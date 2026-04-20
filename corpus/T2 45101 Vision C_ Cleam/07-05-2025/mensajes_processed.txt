@@ -1,0 +1,19 @@
+T2 45101 Vision C_ Cleam:hola alejandra soy keyla, te anexo una orden de compra
+Permagraf:hola keyla buen dia
+Permagraf:muy bien, te mando pedido
+T2 45101 Vision C_ Cleam:alejandra si tienes el repuesto que te pedí?
+T2 45101 Vision C_ Cleam:es para ese modelo de cutter
+Permagraf:deja pregunto de nuevo
+T2 45101 Vision C_ Cleam:muy bien
+Permagraf:el repuesto que me solicitas no lo manejamos
+Permagraf:te mando del normal?
+T2 45101 Vision C_ Cleam:no alejandra
+T2 45101 Vision C_ Cleam:esque los necesitamos para ese cutter
+T2 45101 Vision C_ Cleam:hay manera que nos los puedas conseguir?
+Permagraf:me dice mi jefa que los proveedore que nosotros les compramos no lo tiene
+Permagraf:ya te puedo facturar esto?
+Permagraf:?
+Permagraf:
+T2 45101 Vision C_ Cleam:hola
+T2 45101 Vision C_ Cleam:alejandra buenas tardes
+T2 45101 Vision C_ Cleam:nos pudieras agregar al pedido un paquetesuete de folders tamaño carta

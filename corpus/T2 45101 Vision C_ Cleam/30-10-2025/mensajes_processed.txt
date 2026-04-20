@@ -1,0 +1,9 @@
+T2 45101 Vision C_ Cleam:buenas tardes
+Permagraf:hola buenas tardes, digame
+T2 45101 Vision C_ Cleam:karely me puedes apoyar con las compras realizadas el año pasado por favor
+T2 45101 Vision C_ Cleam:ya que me estan solicitando un barrido de las compras que se hicieon el año pasado ahi con ustedes
+T2 45101 Vision C_ Cleam:crees que puedas apoyarme con esa informacion ?
+Permagraf:listo
+T2 45101 Vision C_ Cleam:karely, habria manera que me pasaras las facturas en pdf del 2024 para hacer el reporte que me piden
+Permagraf:a que correo?
+T2 45101 Vision C_ Cleam:auxcompras@visioncleam.com

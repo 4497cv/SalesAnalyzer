@@ -1,0 +1,51 @@
+T2 45101 Vision C_ Cleam:buen dia
+T2 45101 Vision C_ Cleam:una pregunta quien esta atendiendo los clientes de alejandra ?
+Permagraf:hola buen dia
+Permagraf:mi nombre es karely y yo la estoy apoyando
+Permagraf:necesitas algo?
+T2 45101 Vision C_ Cleam:sii necesitamos
+T2 45101 Vision C_ Cleam:nos cotices un escritorio
+T2 45101 Vision C_ Cleam:con cajones
+T2 45101 Vision C_ Cleam:y 2 sillas de plastico
+T2 45101 Vision C_ Cleam:y una silla ejecutiva
+Permagraf:no se han reportado contigo para esa cotizacion
+Permagraf:?
+Permagraf:esque yo pase el dato para que te cotizaran
+T2 45101 Vision C_ Cleam:con quien disculpa?
+Permagraf:no hay problama a qui pregunto zas
+T2 45101 Vision C_ Cleam:ok muy bien gracias
+T2 45101 Vision C_ Cleam:te pongo en contexto, solicitamos el cambio de asesor ya que alejandra nos atendia super bien
+T2 45101 Vision C_ Cleam:y por cierto cuando vuelve?
+Permagraf:no les gusta como los atiendo yo en la papapeleria y los toner
+Permagraf:🥹
+T2 45101 Vision C_ Cleam:jaja sii
+T2 45101 Vision C_ Cleam:pero que no solo estas cubriendo a alejandra?
+T2 45101 Vision C_ Cleam:o ya no va a volver
+T2 45101 Vision C_ Cleam:?
+Permagraf:si
+Permagraf:tal ves tarde como un mes i medio
+Permagraf:mas
+Permagraf:pero en lo que necesiten yo los apoyo
+Permagraf:en cuestiones de muebles para oficina nos apoyan unas compañeras
+T2 45101 Vision C_ Cleam:aa ok
+T2 45101 Vision C_ Cleam:si lo paso la sra norma, pero quciera que me lo revisaras tu directamente
+Permagraf:ok, lo checo zas
+Permagraf:checare lo de los escritorios
+Permagraf:mas o menos como ocupas el escritorio
+T2 45101 Vision C_ Cleam:algo parecido a eso
+Permagraf:muy bien
+Permagraf:hola
+Permagraf:sabes si ya tienen pago programados para nosotros
+Permagraf:me dice que te parece ese escritorio
+Permagraf:la de las silla me dice que ya te mandaron las cotizaciones
+Permagraf:si las recibiste o quieres que te las mande de nuevo
+Permagraf:?
+T2 45101 Vision C_ Cleam:si ya tenemos pago programado para el martes
+Permagraf:muy bien
+T2 45101 Vision C_ Cleam:si ya las recibi, muchas gracias
+T2 45101 Vision C_ Cleam:lo revisare
+Permagraf:cualquier cosa me dices zas
+Permagraf:que tengas linda tarde
+T2 45101 Vision C_ Cleam:diculpa aqui revisando la cotizacion del escritorio, cual es el costo real?
+T2 45101 Vision C_ Cleam:😅
+T2 45101 Vision C_ Cleam:disculpa de casualidad manejaras en color tinto el escritorio?

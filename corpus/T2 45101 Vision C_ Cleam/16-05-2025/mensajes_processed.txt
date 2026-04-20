@@ -1,0 +1,13 @@
+Permagraf:hola buen dia
+Permagraf:de esa carpeta si tengo
+T2 45101 Vision C_ Cleam:que colores manejas de carpetas ?
+Permagraf:en un momento te paso el dato
+T2 45101 Vision C_ Cleam:buenas tardes alejandra
+T2 45101 Vision C_ Cleam:te anexo orden de compra
+Permagraf:ese es naranja
+T2 45101 Vision C_ Cleam:bueno asii pero en negro o transparente
+Permagraf:okis
+Permagraf:si
+Permagraf:te facturo?
+T2 45101 Vision C_ Cleam:si, por favor
+Permagraf:muy bien

@@ -1,0 +1,9 @@
+T2 45101 Vision C_ Cleam:hola buenas tardes soy sinali
+Permagraf:hola sinali buen dia
+Permagraf:claro que si
+Permagraf:te mando el pedido?
+Permagraf:me habian faltado las libretas
+T2 45101 Vision C_ Cleam:muy bien
+Permagraf:te facturó?
+T2 45101 Vision C_ Cleam:si
+Permagraf:muy bien

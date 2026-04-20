@@ -1,0 +1,10 @@
+T2 45101 Vision C_ Cleam:buenas tardes karely
+T2 45101 Vision C_ Cleam:soy lupita, me apoyas con la siguiente orden de compra por favor
+Permagraf:hola lupita buenas tardes, muy bien
+Permagraf:esta bien a si
+Permagraf:ustedes todavia se les puede facturar?
+T2 45101 Vision C_ Cleam:si esta bien
+T2 45101 Vision C_ Cleam:si
+Permagraf:muy bien
+T2 45101 Vision C_ Cleam:gracias karely, muchas gracias
+Permagraf:gracias a ti

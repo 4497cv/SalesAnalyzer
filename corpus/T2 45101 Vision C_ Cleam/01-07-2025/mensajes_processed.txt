@@ -1,0 +1,14 @@
+Permagraf:hola buen dia
+T2 45101 Vision C_ Cleam:buen dia
+T2 45101 Vision C_ Cleam:por favor me podría reenviar la factura para revisarlo
+Permagraf:si claro
+T2 45101 Vision C_ Cleam:muy bien gracias
+T2 45101 Vision C_ Cleam:muchas gracias, la revisare
+Permagraf:quieres que te aplique mientras a si o me espero?
+T2 45101 Vision C_ Cleam:permitame un momento en lo que me confirman que podemos hacer
+Permagraf:muy bien
+T2 45101 Vision C_ Cleam:por favor si aplique el pago
+T2 45101 Vision C_ Cleam:pasaremos lo restante al próximo pago que realicen
+Permagraf:muy bien
+T2 45101 Vision C_ Cleam:muchas gracias
+Permagraf:gracias a ti

@@ -1,0 +1,21 @@
+t6 CASSANDRA ADMINISTRACION CHINIZA:buenos dias, para hacer un pedido para el lunes
+t6 CASSANDRA ADMINISTRACION CHINIZA:serian 4 paquetes de sobres de raya, ligas y una libreta por favor
+Comercios Unidos:de ligas necesitas una cajita ?
+Comercios Unidos:a que nombre se facturara este pedido ?
+t6 CASSANDRA ADMINISTRACION CHINIZA:si
+t6 CASSANDRA ADMINISTRACION CHINIZA:a nombre de dora
+t6 CASSANDRA ADMINISTRACION CHINIZA:por favor
+Comercios Unidos:ok se entrega en oficina verdad ?
+Comercios Unidos:una pregunta eres casandra ?
+t6 CASSANDRA ADMINISTRACION CHINIZA:si
+Comercios Unidos:a ok
+Comercios Unidos:seria tan amable de pasarme su apellido para la base de datos
+t6 CASSANDRA ADMINISTRACION CHINIZA:gonzalez
+Comercios Unidos:gracias
+Comercios Unidos:eliminaste este mensaje.
+Comercios Unidos:eliminaste este mensaje.
+Comercios Unidos:eliminaste este mensaje.
+Comercios Unidos:eliminaste este mensaje.
+Comercios Unidos:eliminaste este mensaje.
+Comercios Unidos:me equivoque
+Comercios Unidos:cuenta con tu pedido para el lunes

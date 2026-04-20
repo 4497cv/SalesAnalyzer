@@ -1,0 +1,14 @@
+T2 45101 Vision C_ Cleam:hola buenos días
+T2 45101 Vision C_ Cleam:alejandra, tendrás catálogo de muebles para oficina ?
+Permagraf:hola rosy buen dia, como estas
+Permagraf:deja checo
+Permagraf:como que ocupas
+Permagraf:?
+T2 45101 Vision C_ Cleam:escritorio
+T2 45101 Vision C_ Cleam:silla de plastico y silla para el escritorio
+Permagraf:okis lo checo zas
+T2 45101 Vision C_ Cleam:por favor
+T2 45101 Vision C_ Cleam:hola alejandra
+Permagraf:hola rosy
+T2 45101 Vision C_ Cleam:hola buen dia
+Permagraf:buen dia}

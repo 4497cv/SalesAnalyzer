@@ -1,0 +1,9 @@
+Permagraf:buenos dias
+Permagraf:va a querer que le mande lo cotizado
+T2 45101 Vision C_ Cleam:buenas tardes
+T2 45101 Vision C_ Cleam:si karely por favor
+T2 45101 Vision C_ Cleam:nos lo mandarias el dia de mañana?
+Permagraf:si
+Permagraf:se entrega en dom de factura, soy lolys karely esta de vacaciones
+T2 45101 Vision C_ Cleam:un gusto lolys
+T2 45101 Vision C_ Cleam:si seria para entregar a domucilio por favor
