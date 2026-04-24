@@ -2,13 +2,49 @@ import re
 import glob
 import os
 import nltk
+from trie import *
+
+trie = Trie("es", 50000)
+
+
 #from googletrans import Translator
 
 #nltk.download('vader_lexicon')
 
 def normalizacion_texto(texto):
     texto = texto.replace("oky", "ok")
+    texto = texto.replace("ati", "a ti")
+    texto = texto.replace("aty", "a ti")
+    texto = texto.replace("asii", "asi")
+    texto = texto.replace("asii", "asi")
+    texto = texto.replace("asta", "hasta")
+    texto = texto.replace("asii", "asi")
+    texto = texto.replace("andjunto", "adjunto")
+    texto = texto.replace("aorita", "ahorita")
+    texto = texto.replace("abra", "habra")
+    texto = texto.replace("agregharemos", "agregaremos")
+    texto = texto.replace("aleajandra", "alejandra")
+    texto = texto.replace("bieb", "bien")
+    texto = texto.replace("cres", "crees")
+    texto = texto.replace("cuanrto", "cuanto")
+    texto = texto.replace("domucilio", "domicilio")
+    texto = texto.replace("sipis", "si")
+    texto = texto.replace("sip", "si")
+    texto = texto.replace("sio", "si")
+    texto = texto.replace("similhares", "similares")
+    texto = texto.replace("shabra", "sabra")
+    texto = texto.replace("siii", "si")
+    texto = texto.replace("sii", "si")
+    texto = texto.replace("sustitua", "sustituya")
+    texto = texto.replace("xfis", "porfis")
+    texto = texto.replace("yaaaaa", "ya")
+    texto = texto.replace("vidaaaaa", "vida")
+    texto = texto.replace("plastoco", "plastico")
+    texto = texto.replace("viendop", "viendo")
+    
     texto = texto.replace("paq", "paquetes")
+    texto = re.sub(r'[áéíóúñ]', lambda m: {'á':'a','é':'e','í':'i','ó':'o','ú':'u', 'ñ':'n'}[m.group()], texto)
+
     return texto
 
 def normalizacion_puntuacion(texto):
@@ -22,7 +58,17 @@ def normalizacion_puntuacion(texto):
 def normalizacion_bigramas(texto):
     norm_bigramas = {"d efavor": "de favor",
                      "con tigo": "contigo",
-                     "porfavor": "por favor"}
+                     "porfavor": "por favor",
+                     "alomejor": "a lo mejor",
+                     "ala": "a la",
+                     "are": "hare",
+                     "acjas": "cajas",
+                     "acolgar": "a colgar",
+                     "ami": "a mi",
+                     "aprogramacion": "a programacion",
+                     "aque": "a que",
+                     "avisasi": "avisas si",
+                     "yavi": "ya vi"}
 
     for bg_erroneo, bg_forma in norm_bigramas.items():
         # reemplaza el bigrama erroneo con su forma correcta
@@ -65,7 +111,10 @@ def preprocess_chat(filename):
                 text = normalizacion_bigramas(text)
 
                 processed_text = author + ":" + text
-                print(processed_text)
+                words_list = re.split(r"[ .,]+", text)
+
+                #found_words, similar_words, unfound_words = trie.process_text_optimized(words_list)
+                #print(similar_words)
 
                 if("<Multimedia omitido>" not in line):
                     processed_chat.append(processed_text)
