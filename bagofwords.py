@@ -8,9 +8,6 @@ import math
 import workspace
 from nltk.corpus import stopwords
 stop_es = stopwords.words('spanish')
-from trie import *
-
-trie = Trie("es", 50000)
 local_stopwords = {'lupita', 'alejandra', 'mensaje', 
                  'sinali', 'zuleika', 'sofia', 'neftali', 'karla', 'aa', 'aah', 'ah', 'ahhh', 'ahh','alejandrapermagrafgmailcom',
                  'ale', 'alejanda', 'alejandrapermagrafgmailcom', 'rossy', 'rosy', 'rosi', 'rosario', 'rui',
@@ -195,7 +192,7 @@ def process_tf_idf(bow_df) -> None:
     tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8")
 
 
-def __main__():
+def run():
     workspace.set_workspace_path(os.path.dirname(os.path.abspath(__file__)))
 
     vocabulary = process_vocabulary(vocab_lim=100000)
@@ -211,4 +208,5 @@ def __main__():
     process_euclidean_distance_matrix(bow_b_df)
 
 
-__main__()
+if __name__ == "__main__":
+    run()

@@ -2,7 +2,7 @@
 import os
 import sys
 
-workspace_path = ""
+workspace_path = os.path.dirname(os.path.abspath(__file__))
 key_path = ""
 articles_path = ""
 texts_path = ""
@@ -56,6 +56,18 @@ def get_texts_path(debug = 0):
 def get_corpus_path(debug = 0):
     global workspace_path
     corpus_path = os.path.join(workspace_path, "corpus")
+
+    if(os.path.exists(corpus_path)):
+        if(debug): print("Path exists for corpus %s" % corpus_path)
+    else:
+        if(debug): print("New path created for corpus %s" % corpus_path)
+        os.makedirs(corpus_path, exist_ok=True)
+
+    return corpus_path
+
+def get_chat_exports(debug = 0):
+    global workspace_path
+    corpus_path = os.path.join(workspace_path, "chat exports")
 
     if(os.path.exists(corpus_path)):
         if(debug): print("Path exists for corpus %s" % corpus_path)

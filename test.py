@@ -79,7 +79,7 @@ def cargar_conversaciones():
 
 
 # === PIPELINE PRINCIPAL ===
-def __main__():
+def run():
     workspace.set_workspace_path(os.path.dirname(os.path.abspath(__file__)))
     output_path = workspace.get_output_path()
 
@@ -123,4 +123,5 @@ def __main__():
             print(f"  {score:.3f}  {term}")
 
 
-__main__()
+if __name__ == "__main__":
+    run()

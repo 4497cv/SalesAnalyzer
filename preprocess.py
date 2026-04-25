@@ -2,9 +2,6 @@ import re
 import glob
 import os
 import nltk
-from trie import *
-
-trie = Trie("es", 50000)
 
 
 #from googletrans import Translator
@@ -41,9 +38,28 @@ def normalizacion_texto(texto):
     texto = texto.replace("vidaaaaa", "vida")
     texto = texto.replace("plastoco", "plastico")
     texto = texto.replace("viendop", "viendo")
-    
+    texto = texto.replace("hh", "h")
+    texto = texto.replace("kh", "k")
+    texto = texto.replace("ð", "")
+    texto = texto.replace("Ÿ", "")
+    texto = texto.replace("˜", "")
+    texto = texto.replace("â", "")
+    texto = texto.replace("œ", "")
+    texto = texto.replace("¨", "")
+    texto = texto.replace("Š", "")
+    texto = texto.replace("{", "")
+    texto = texto.replace("}", "")
+    texto = texto.replace("[", "")
+    texto = texto.replace("]", "")
+    texto = texto.replace("*", "")
+    texto = texto.replace("@", "")
+    texto = texto.replace("pha", "pa")
+    texto = texto.replace("phe", "pa")
+    texto = texto.replace("phi", "pa")
+    texto = texto.replace("scoch", "scotch")
+
     texto = texto.replace("paq", "paquetes")
-    texto = re.sub(r'[áéíóúñ]', lambda m: {'á':'a','é':'e','í':'i','ó':'o','ú':'u', 'ñ':'n'}[m.group()], texto)
+    #texto = re.sub(r'[áéíóúñ]', lambda m: {'á':'a','é':'e','í':'i','ó':'o','ú':'u', 'ñ':'n'}[m.group()], texto)
 
     return texto
 
@@ -86,25 +102,24 @@ def preprocess_chat(filename):
             raw_chat.append(line)
 
         for line in raw_chat:
-            # separar fecha y hora del contenido
-            chat_data = line.split("-", 1)
-            # solo tomar en cuenta los mensajes que tienen fecha y el mensaje tiene contenido
-            if len(chat_data) < 2:
-                continue
+            # Formato nuevo: [DD/MM/YY, HH:MM:SS p.m.] Author: message
+            if line.startswith("["):
+                bracket_end = line.find("]")
+                if bracket_end == -1:
+                    continue
+                content_raw = line[bracket_end + 1:].strip()
+            else:
+                # Formato viejo: DD/MM/YYYY, HH:MM - Author: message
+                chat_data = line.split("-", 1)
+                if len(chat_data) < 2:
+                    continue
+                content_raw = chat_data[1].strip()
 
-            date_time = chat_data[0]
-            date_time = date_time.split(",", 1)
-            date = date_time[0]
-            time = date_time[1]
+            content = content_raw.split(":", 1)
 
-            content = chat_data[1]
-            content = content.split(":", 1)
-            
             if(len(content) > 1):
-                author = content[0]
-                author = author[1:]
-                text = content[1].lower()
-                text = text[1:]
+                author = content[0].strip()
+                text = content[1].lower().strip()
                 # normalizar errores de texto, puntuacion y bigramas
                 text = normalizacion_texto(text)
                 text = normalizacion_puntuacion(text)
@@ -125,8 +140,52 @@ def preprocess_chat(filename):
         for line in processed_chat:
             f2.write(line + "\n")
 
-corpus_dir = os.path.join(os.path.dirname(__file__), "corpus")
-for txt_file in glob.glob(os.path.join(corpus_dir, "**", "*.txt"), recursive=True):
-    if not txt_file.endswith("_processed.txt"):
-        print(f"Procesando: {txt_file}")
-        preprocess_chat(txt_file)
+def extract_author_text(line: str) -> tuple[str, str]:
+    """
+    Parsea una linea en formato 'author:text' de mensajes_processed.txt.
+    Retorna (author, text). Si no hay ':', retorna ('', line).
+    """
+    parts = line.strip().split(":", 1)
+    if len(parts) == 2:
+        return parts[0].strip(), parts[1].strip()
+    return "", line.strip()
+
+
+def clean_for_sentiment(texto: str) -> str:
+    """
+    Limpieza adicional orientada a sentiment analysis:
+    - Elimina URLs
+    - Elimina menciones @usuario
+    - Colapsa espacios multiples
+    - Elimina tokens numericos puros (precios, telefonos no aportan sentimiento)
+    - Elimina tokens de un solo caracter
+    """
+    texto = re.sub(r"https?://\S+|www\.\S+", "", texto)
+    texto = re.sub(r"@\w+", "", texto)
+    texto = re.sub(r"\b\d+\b", "", texto)
+    tokens = [t for t in texto.split() if len(t) > 1]
+    return " ".join(tokens).strip()
+
+
+def normalize_for_sentiment(texto: str) -> str:
+    """
+    Pipeline completo para preparar un mensaje antes de sentiment analysis.
+    Aplica: correccion de typos -> puntuacion -> bigramas -> limpieza de sentimiento.
+    """
+    texto = normalizacion_texto(texto)
+    texto = normalizacion_puntuacion(texto)
+    texto = normalizacion_bigramas(texto)
+    texto = clean_for_sentiment(texto)
+    return texto
+
+
+def run():
+    corpus_dir = os.path.join(os.path.dirname(__file__), "corpus")
+    for txt_file in glob.glob(os.path.join(corpus_dir, "**", "*.txt"), recursive=True):
+        if not txt_file.endswith("_processed.txt"):
+            print(f"Procesando: {txt_file}")
+            preprocess_chat(txt_file)
+
+
+if __name__ == "__main__":
+    run()
