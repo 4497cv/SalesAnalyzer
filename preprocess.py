@@ -2,14 +2,48 @@ import re
 import glob
 import os
 import nltk
-
-
+from trie import *
 #from googletrans import Translator
 
 #nltk.download('vader_lexicon')
+unfound_words = []
+
+trie = Trie(language = "es", dict_size = 100000)
+
+def limpiar_emojis_texto(texto):
+    EMOJI_RE = re.compile("[\U00010000-\U0010FFFF]", flags=re.UNICODE)
+    return EMOJI_RE.sub("", texto).strip()
+
+def validar_emoji_en_texto(texto):
+    EMOJI_RE = re.compile("[\U00010000-\U0010FFFF]", flags=re.UNICODE)
+    resultado = bool(EMOJI_RE.search(texto))
+    return resultado
+
+def validar_alpha_en_texto(texto):
+    ALPHA_RE = re.compile(r'[a-záéíóúüñA-ZÁÉÍÓÚÜÑ]')    
+    resultado = bool(ALPHA_RE.search(texto))
+    return resultado
 
 def normalizacion_texto(texto):
+    texto = texto.replace("pha", "pa")
+    texto = texto.replace("phe", "pe")
+    texto = texto.replace("phi", "pi")
+    texto = texto.replace("pho", "po")
+    texto = texto.replace("phu", "pu")
+    texto = texto.replace("lha", "la")
+    texto = texto.replace("lhe", "le")
+    texto = texto.replace("lhi", "li")
+    texto = texto.replace("lho", "lo")
+    texto = texto.replace("lhu", "lu")
+    texto = texto.replace("kha", "ka")
+    texto = texto.replace("khe", "ke")
+    texto = texto.replace("khi", "ki")
+    texto = texto.replace("kho", "ko")
+    texto = texto.replace("khu", "ku")
     texto = texto.replace("oky", "ok")
+    texto = texto.replace("oki", "ok")
+    texto = texto.replace("oks", "ok")
+    texto = texto.replace("okd", "ok")
     texto = texto.replace("ati", "a ti")
     texto = texto.replace("aty", "a ti")
     texto = texto.replace("asii", "asi")
@@ -53,13 +87,29 @@ def normalizacion_texto(texto):
     texto = texto.replace("]", "")
     texto = texto.replace("*", "")
     texto = texto.replace("@", "")
-    texto = texto.replace("pha", "pa")
-    texto = texto.replace("phe", "pa")
-    texto = texto.replace("phi", "pa")
     texto = texto.replace("scoch", "scotch")
-
-    texto = texto.replace("paq", "paquetes")
+    texto = texto.replace("aña", "año")
+    texto = texto.replace(" paq ", "paquete")
+    texto = texto.replace("revisin", "revision")
+    texto = texto.replace("somn", "son")
+    texto = texto.replace("sonj", "son")
+    texto = texto.replace("mañona", "mañana")
+    texto = texto.replace("acjas", "cajas")
+    texto = re.sub(r'(\d)([a-záéíóúüñ])', r'\1 \2', texto)
+    texto = re.sub(r'([a-záéíóúüñ])(\d)', r'\1 \2', texto)
     #texto = re.sub(r'[áéíóúñ]', lambda m: {'á':'a','é':'e','í':'i','ó':'o','ú':'u', 'ñ':'n'}[m.group()], texto)
+
+    return texto
+
+def normalizacion_nombres(texto):
+    texto = texto.replace("aleajandra", "alejandra")
+    texto = texto.replace("aleajandra", "alejanda")
+    texto = texto.replace("kharely", "Karely")
+    texto = texto.replace("rossy", "rosy")
+    texto = texto.replace("betzavel", "betzabel")
+    texto = texto.replace("zuleika", "zuleica")
+    texto = texto.replace("zuelika", "zuleica")
+    texto = texto.replace("casandra", "cassandra")
 
     return texto
 
@@ -68,6 +118,7 @@ def normalizacion_puntuacion(texto):
     texto = texto.replace("??", "?")
     texto = texto.replace(" ,", ",")
     texto = texto.replace("  ", " ")
+    texto = texto.replace("   ", " ")
     #texto = texto.replace(" ?", "?")
     return texto
 
@@ -76,15 +127,17 @@ def normalizacion_bigramas(texto):
                      "con tigo": "contigo",
                      "porfavor": "por favor",
                      "alomejor": "a lo mejor",
-                     "ala": "a la",
-                     "are": "hare",
-                     "acjas": "cajas",
+                     " ala ": "a la",
+                     " are ": "hare",
                      "acolgar": "a colgar",
-                     "ami": "a mi",
-                     "aprogramacion": "a programacion",
-                     "aque": "a que",
-                     "avisasi": "avisas si",
-                     "yavi": "ya vi"}
+                     " ami ": "a mi",
+                     " aprogramacion ": "a programacion",
+                     " aque ": "a que",
+                     " avisasi ": "avisas si",
+                     " yavi ": "ya vi",
+                     " esque ": "es que",
+                     "estabien": "esta bien",
+                     "paquetede": "paquete de",}
 
     for bg_erroneo, bg_forma in norm_bigramas.items():
         # reemplaza el bigrama erroneo con su forma correcta
@@ -92,7 +145,8 @@ def normalizacion_bigramas(texto):
     
     return texto
 
-def preprocess_chat(filename):
+def preprocess_chat(filename, trie_flag = 0):
+    
     #pre-procesamiento del texto
     with open(filename, "r", encoding = "utf-8") as f:
         raw_chat = []
@@ -120,18 +174,26 @@ def preprocess_chat(filename):
             if(len(content) > 1):
                 author = content[0].strip()
                 text = content[1].lower().strip()
+                # quitar emojis del texto
+                if(validar_alpha_en_texto(text) and validar_emoji_en_texto(text)):
+                    text = limpiar_emojis_texto(text)
+
                 # normalizar errores de texto, puntuacion y bigramas
                 text = normalizacion_texto(text)
                 text = normalizacion_puntuacion(text)
                 text = normalizacion_bigramas(text)
+                text = normalizacion_nombres(text)
 
                 processed_text = author + ":" + text
                 words_list = re.split(r"[ .,]+", text)
+                
+                if(trie_flag):
+                    found_words, similar_words, unfound_words = trie.process_text_optimized(words_list)
+                    unfound_words.append(unfound_words)
 
-                #found_words, similar_words, unfound_words = trie.process_text_optimized(words_list)
-                #print(similar_words)
-
-                if("<Multimedia omitido>" not in line):
+                if(("<Multimedia omitido>" not in line) and\
+                   ("Eliminaste este mensaje" not in line) and \
+                    (False == validar_emoji_en_texto(line))):
                     processed_chat.append(processed_text)
 
     new_file = filename.replace(".txt", "_processed.txt")
@@ -139,6 +201,11 @@ def preprocess_chat(filename):
     with open(new_file, "w+", encoding="utf-8") as f2:
         for line in processed_chat:
             f2.write(line + "\n")
+    
+    if(trie_flag):
+        with open("unfound_words.txt", "a+", encoding = "utf-8") as f3:
+            for element in unfound_words:
+                f3.write(str(element) + "\n")
 
 def extract_author_text(line: str) -> tuple[str, str]:
     """

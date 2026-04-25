@@ -9,7 +9,7 @@ class TrieNode:
         self.freq = 0  # contador de uso
 
 class Trie:
-    def __init__(self, language = "en", dict_size = 50000):
+    def __init__(self, language = "es", dict_size = 50000):
         self.root = TrieNode()
         self.all_words = []  # lista para recorrer fácilmente
         self.all_words_set = set()

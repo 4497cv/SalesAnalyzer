@@ -8,10 +8,28 @@ import math
 import workspace
 from nltk.corpus import stopwords
 stop_es = stopwords.words('spanish')
-local_stopwords = {'lupita', 'alejandra', 'mensaje', 
-                 'sinali', 'zuleika', 'sofia', 'neftali', 'karla', 'aa', 'aah', 'ah', 'ahhh', 'ahh','alejandrapermagrafgmailcom',
-                 'ale', 'alejanda', 'alejandrapermagrafgmailcom', 'rossy', 'rosy', 'rosi', 'rosario', 'rui',
-                 'zuelika', 'zuleica', 'carla', 'kharely', 'oriana', 'comercios', 'unidos'}
+local_stopwords = {
+    # Nombres propios
+    'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
+    'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra',
+    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel',
+    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika',
+    'Keyla', 'dora',
+    # Empresas / vendedor
+    'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
+    'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
+    'olfa', ''
+    # IDs
+    't1', 't2', 't4', 't5', 't6',
+    # Apellidos
+    'laso', 'roman', 'mora',
+    # Sistema WhatsApp
+    'eliminaste', 'mensaje', 'eliminó',
+    # Ruido
+    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'ale',
+    # saludos
+    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy',
+}
 
 def euclidean_distance(vect_1, vect_2):
     diff = np.array(vect_1) - np.array(vect_2)
@@ -83,11 +101,6 @@ def _extract_text(line: str) -> str:
     """Returns only the message text from a 'author:text' line."""
     parts = line.split(":", 1)
     return parts[1] if len(parts) > 1 else ""
-
-def eliminar_stopwords(text):
-    stopwords = {'lupita', 'alejandra', 'mensaje', 
-                 'sinali', 'zuleika', 'sofia', 'neftali', 'auxcomprasvisioncleamcom',
-                 'betzavel', 'betzabel', 'chiniza'}
     
 
 def process_vocabulary(vocab_lim=500) -> set:

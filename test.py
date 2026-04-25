@@ -15,13 +15,15 @@ stop_es = stop_es - preservar
 # Stopwords de dominio
 stop_dominio = {
     # Nombres propios
-    'kharely', 'karely', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
+    'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
     'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali',
     'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel',
     'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika',
+    'Keyla',
     # Empresas / vendedor
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
+    'olfa', ''
     # IDs
     't1', 't2', 't4', 't5', 't6',
     # Apellidos
@@ -30,6 +32,7 @@ stop_dominio = {
     'eliminaste', 'mensaje', 'eliminó',
     # Ruido
     'aa', 'aah', 'ah', 'ahh', 'ahhh', 'ale',
+    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy',
 }
 
 todas_stopwords = list(stop_es | stop_dominio)
