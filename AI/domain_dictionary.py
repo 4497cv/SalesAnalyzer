@@ -116,16 +116,23 @@ def run_lda(tfidf_df: pd.DataFrame, n_topics: int) -> tuple[np.ndarray, pd.DataF
     )
     doc_topic = lda.fit_transform(X)
 
+    # dominant topic for every term (argmax over topics axis)
+    dominant_topic = np.argmax(lda.components_, axis=0)  # shape: (n_features,)
+
+    # rank within dominant topic (position in sorted order for that topic)
+    topic_sorted = {tid: np.argsort(lda.components_[tid])[::-1].tolist()
+                    for tid in range(n_topics)}
+
     rows = []
-    for tid in range(n_topics):
-        top_idx = np.argsort(lda.components_[tid])[::-1][:TOP_PER_TOPIC]
-        for rank, idx in enumerate(top_idx, start=1):
-            rows.append({
-                "term":        tfidf_df.columns[idx],
-                "topic_id":    tid,
-                "topic_label": TOPIC_LABELS.get(tid, f"topic_{tid}"),
-                "topic_rank":  rank,
-            })
+    for idx, term in enumerate(tfidf_df.columns):
+        tid = int(dominant_topic[idx])
+        rank = topic_sorted[tid].index(idx) + 1
+        rows.append({
+            "term":        term,
+            "topic_id":    tid,
+            "topic_label": TOPIC_LABELS.get(tid, f"topic_{tid}"),
+            "topic_rank":  rank,
+        })
 
     return doc_topic, pd.DataFrame(rows)
 
