@@ -20,7 +20,7 @@ local_stopwords = {
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
     'olfa', '.com', 'mvictoriaagri-nova.com', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio', 'ptt', 'wa', 'epson',
-    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco',
+    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'pritt', 'sharpie', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco',
     # IDs
     't1', 't2', 't4', 't5', 't6',
     # Apellidos
@@ -28,15 +28,15 @@ local_stopwords = {
     # Sistema WhatsApp
     'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 
     # Ruido
-    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola',
+    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola',
     # saludos
     'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda',
     # palabras simpples
-    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf',
+    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf', 'mmm', 'mm',
     #articulos
     'ecg',
     # regionalismos
-    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona',
+    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 
     # lugares
     'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto',
 }

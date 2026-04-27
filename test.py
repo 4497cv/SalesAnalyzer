@@ -13,47 +13,41 @@ preservar = {'nunca', 'nada', 'sin', 'menos', 'poco'}
 stop_es = stop_es - preservar
 
 # Stopwords de dominio
-stop_dominio = {
+local_stopwords = {
     # Nombres propios
     'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
     'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra',
     'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel', 'carmen', 'lolis', 'michelle',
     'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva',
-    'keyla', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia',
-    'katia', 'andrea', 'lesli', 'victoria', 'vicbet',
-    'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu',
-    'armando', 'daniela', 'jaime', 'jesus', 'alicia', 'fabi', 'michel',
-    'briceida', 'miriam', 'dulce', 'claudia', 'celica', 'juan',
-    # Variantes acentuadas de nombres
-    'raúl', 'maría', 'jesús',
-    # Títulos y formas de tratamiento
-    'señorita', 'señor', 'señora', 'don',
-    # Apellidos
-    'laso', 'roman', 'mora', 'ruiz', 'zapata', 'infante',
-    # Empresas / marcas
+    'keyla', 'dora', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia', 'katia', 'andrea', 'lesli', 'victoria', 'vicbet', 'bic',
+    'mari', 'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu', 'armando', 'daniela', 'jaime', 'jesus', 'alicia',
+    # Empresas / vendedor
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
-    'olfa', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio',
-    'ptt', 'wa', 'epson', 'permagrafgmail', 'tallerelcapulehotmail',
-    'pilot', 'kyma', 'pelikan', 'gps', 'kinera', 'acco', 'azor', 'baco',
-    # IDs de cliente
+    'olfa', '.com', 'mvictoriaagri-nova.com', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio', 'ptt', 'wa', 'epson',
+    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'pritt', 'sharpie', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco',
+    # IDs
     't1', 't2', 't4', 't5', 't6',
-    # Sistema WhatsApp / archivos
-    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'webp', 'web', 'jpg',
-    # Ruido / interjecciones
-    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'jajaj',
-    'jeje', 'jejeje', 'este', 'ok', 'oh', 'eh', 'oye', 'pa', 'shola',
-    # Saludos
-    'buenos', 'dias', 'dia', 'buenas', 'tardes', 'hola', 'gracias', 'muchas', 'bien', 'muy',
-    # Palabras simples / ruido
-    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', 'cf',
-    # Regionalismos
-    'mija', 'onda', 'bendito',
-    # Lugares
-    'sanalona', 'culiacan', 'mazatlan', 'villas', 'valle', 'alto',
+    # Apellidos
+    'laso', 'roman', 'mora',
+    # Sistema WhatsApp
+    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 
+    # Ruido
+    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola',
+    # saludos
+    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda',
+    # palabras simpples
+    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf', 'mmm', 'mm',
+    #articulos
+    'ecg',
+    # regionalismos
+    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 
+    # lugares
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto',
 }
 
-todas_stopwords = list(stop_es | stop_dominio)
+
+todas_stopwords = list(stop_es | local_stopwords)
 
 
 # === EXTRAER TEXTO POR CONVERSACIÓN ===
