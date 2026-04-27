@@ -38,7 +38,7 @@ local_stopwords = {
     # regionalismos
     'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 
     # lugares
-    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto',
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto', 'per', 'gbc', 'cm'
 }
 
 def euclidean_distance(vect_1, vect_2):
