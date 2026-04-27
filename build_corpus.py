@@ -95,6 +95,38 @@ def process_zip(filepath):
                 by_date = parse_chat_lines(lines, chat_name)
                 save_corpus(by_date, chat_name)
 
+def process_fb_exports():
+    fb_dir = os.path.join(EXPORTS_DIR, "FB")
+    if not os.path.isdir(fb_dir):
+        return
+
+    for product in os.listdir(fb_dir):
+        product_path = os.path.join(fb_dir, product)
+        if not os.path.isdir(product_path):
+            continue
+        for client in os.listdir(product_path):
+            if client == product:
+                continue
+            msg_file = os.path.join(product_path, client, "mensaje.txt")
+            if not os.path.isfile(msg_file):
+                continue
+
+            client_name = f"FB {product} {client}"
+            date_dir = os.path.join(CORPUS_DIR, client_name, "sin-fecha")
+            os.makedirs(date_dir, exist_ok=True)
+
+            with open(msg_file, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+
+            out_path = os.path.join(date_dir, "mensajes.txt")
+            with open(out_path, "w", encoding="utf-8") as f:
+                f.writelines(lines)
+
+            num_messages = len([l for l in lines if l.strip()])
+            print(f"  {client_name}/sin-fecha — {num_messages} mensajes")
+            report_entries.append((client_name, 1, num_messages))
+
+
 def run():
     for filename in os.listdir(SOURCE_DIR):
         filepath = os.path.join(SOURCE_DIR, filename)
@@ -108,6 +140,7 @@ def run():
                 filepath = os.path.join(EXPORTS_DIR, filename)
                 print(f"Procesando zip: {filename}")
                 process_zip(filepath)
+        process_fb_exports()
     else:
         print(f"Carpeta no encontrada: {EXPORTS_DIR}")
 

@@ -8,31 +8,49 @@ import workspace
 # === STOPWORDS ===
 stop_es = set(stopwords.words('spanish'))
 
-# Preservar palabras con valor semántico comercial
-preservar = {'no', 'si', 'nunca', 'nada', 'sin', 'muy', 'más', 'menos', 'poco', 'mucho'}
+# Preservar solo negaciones y cuantificadores con valor semántico real
+preservar = {'nunca', 'nada', 'sin', 'menos', 'poco'}
 stop_es = stop_es - preservar
 
 # Stopwords de dominio
 stop_dominio = {
     # Nombres propios
     'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
-    'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali',
-    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel',
-    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika',
-    'Keyla',
-    # Empresas / vendedor
+    'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra',
+    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel', 'carmen', 'lolis', 'michelle',
+    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva',
+    'keyla', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia',
+    'katia', 'andrea', 'lesli', 'victoria', 'vicbet',
+    'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu',
+    'armando', 'daniela', 'jaime', 'jesus', 'alicia', 'fabi', 'michel',
+    'briceida', 'miriam', 'dulce', 'claudia', 'celica', 'juan',
+    # Variantes acentuadas de nombres
+    'raúl', 'maría', 'jesús',
+    # Títulos y formas de tratamiento
+    'señorita', 'señor', 'señora', 'don',
+    # Apellidos
+    'laso', 'roman', 'mora', 'ruiz', 'zapata', 'infante',
+    # Empresas / marcas
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
-    'olfa', ''
-    # IDs
+    'olfa', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio',
+    'ptt', 'wa', 'epson', 'permagrafgmail', 'tallerelcapulehotmail',
+    'pilot', 'kyma', 'pelikan', 'gps', 'kinera', 'acco', 'azor', 'baco',
+    # IDs de cliente
     't1', 't2', 't4', 't5', 't6',
-    # Apellidos
-    'laso', 'roman', 'mora',
-    # Sistema WhatsApp
-    'eliminaste', 'mensaje', 'eliminó',
-    # Ruido
-    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'ale',
-    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy',
+    # Sistema WhatsApp / archivos
+    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'webp', 'web', 'jpg',
+    # Ruido / interjecciones
+    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'jajaj',
+    'jeje', 'jejeje', 'este', 'ok', 'oh', 'eh', 'oye', 'pa', 'shola',
+    # Saludos
+    'buenos', 'dias', 'dia', 'buenas', 'tardes', 'hola', 'gracias', 'muchas', 'bien', 'muy',
+    # Palabras simples / ruido
+    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', 'cf',
+    # Regionalismos
+    'mija', 'onda', 'bendito',
+    # Lugares
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'valle', 'alto',
 }
 
 todas_stopwords = list(stop_es | stop_dominio)
@@ -62,7 +80,7 @@ def cargar_conversaciones():
             if not os.path.exists(file_path):
                 continue
 
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, "r", encoding="utf-8-sig") as f:
                 lineas = []
                 for line in f:
                     line = line.strip()
@@ -96,7 +114,7 @@ def run():
         min_df=3,                 # elimina typos raros
         max_df=0.90,              # elimina palabras ultra-comunes
         max_features=2000,        # limita dimensionalidad
-        token_pattern=r'\b[a-z]{2,}\b'  # solo palabras de 2+ letras
+        token_pattern=r'[a-záéíóúüñ]{2,}'  # palabras de 2+ letras, incluye acentos
     )
 
     X = vectorizer.fit_transform(documentos)
@@ -108,7 +126,7 @@ def run():
         index=nombres,
         columns=vectorizer.get_feature_names_out()
     )
-    tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8")
+    tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8-sig")
     print("TF-IDF guardado")
 
     # Top 20 términos globales (verificación rápida)

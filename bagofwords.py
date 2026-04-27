@@ -12,23 +12,33 @@ local_stopwords = {
     # Nombres propios
     'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
     'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra',
-    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel',
-    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika',
-    'Keyla', 'dora',
+    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel', 'carmen', 'lolis', 'michelle',
+    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva',
+    'keyla', 'dora', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia', 'katia', 'andrea', 'lesli', 'victoria', 'vicbet', 'bic',
+    'mari', 'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu', 'armando', 'daniela', 'jaime', 'jesus', 'alicia',
     # Empresas / vendedor
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
-    'olfa', ''
+    'olfa', '.com', 'mvictoriaagri-nova.com', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio', 'ptt', 'wa', 'epson',
+    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco',
     # IDs
     't1', 't2', 't4', 't5', 't6',
     # Apellidos
     'laso', 'roman', 'mora',
     # Sistema WhatsApp
-    'eliminaste', 'mensaje', 'eliminó',
+    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 
     # Ruido
-    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'ale',
+    'aa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola',
     # saludos
-    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy',
+    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda',
+    # palabras simpples
+    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf',
+    #articulos
+    'ecg',
+    # regionalismos
+    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona',
+    # lugares
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto',
 }
 
 def euclidean_distance(vect_1, vect_2):
@@ -57,7 +67,7 @@ def process_euclidean_distance_matrix(bow_df) -> None:
     eucl_df = pd.DataFrame(eucl_matrix, index=documents_list, columns=documents_list)
 
     output_path = workspace.get_output_path()
-    eucl_df.to_csv(os.path.join(output_path, "euclidean_dist_matrix.csv"), encoding="utf-8")
+    eucl_df.to_csv(os.path.join(output_path, "euclidean_dist_matrix.csv"), encoding="utf-8-sig")
 
 
 def process_cosine_distance_matrix(bow_df) -> None:
@@ -73,7 +83,7 @@ def process_cosine_distance_matrix(bow_df) -> None:
     cos_df = pd.DataFrame(cos_mat, index=documents_list, columns=documents_list)
 
     output_path = workspace.get_output_path()
-    cos_df.to_csv(os.path.join(output_path, "cosine_dist_matrix.csv"), encoding="utf-8")
+    cos_df.to_csv(os.path.join(output_path, "cosine_dist_matrix.csv"), encoding="utf-8-sig")
 
 
 def pre_process_word(word: str) -> str:
@@ -116,7 +126,7 @@ def process_vocabulary(vocab_lim=500) -> set:
     vocabulary = set()
 
     for _, file_path in _iter_processed_files():
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, "r", encoding="utf-8-sig") as f:
             for line in f:
                 text = _extract_text(line.strip())
                 for word in text.split():
@@ -155,7 +165,7 @@ def process_bag_of_words(vocabulary: set, type="binary") -> None:
         print(f"processing {doc_name}")
         bow = {word: 0 for word in vocabulary}
 
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, "r", encoding="utf-8-sig") as f:
             for line in f:
                 for word in _extract_text(line.strip()).split():
                     if len(word) > 1:
@@ -171,7 +181,7 @@ def process_bag_of_words(vocabulary: set, type="binary") -> None:
 
     bag_of_words_df = pd.DataFrame(bow_matrix, columns=vocab_list, index=doc_names)
     output_path = workspace.get_output_path()
-    bag_of_words_df.to_csv(os.path.join(output_path, f"bow_matrix_{type}.csv"), encoding="utf-8")
+    bag_of_words_df.to_csv(os.path.join(output_path, f"bow_matrix_{type}.csv"), encoding="utf-8-sig")
 
 
 def process_tf_idf(bow_df) -> None:
@@ -202,7 +212,7 @@ def process_tf_idf(bow_df) -> None:
 
     tfidf_df = pd.DataFrame(tfidf_matrix, index=bow_df.index, columns=bow_df.columns)
     output_path = workspace.get_output_path()
-    tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8")
+    tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8-sig")
 
 
 def run():
