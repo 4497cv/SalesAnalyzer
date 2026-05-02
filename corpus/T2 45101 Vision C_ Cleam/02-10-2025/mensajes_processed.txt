@@ -1,9 +1,0 @@
-T2 45101 Vision C_ Cleam:buen dia karely, soy lupita
-Permagraf:hola lupita buen dia
-Permagraf:claro que si
-T2 45101 Vision C_ Cleam:gracias
-Permagraf:te facturo?
-T2 45101 Vision C_ Cleam:si por favor
-Permagraf:muy bien
-T2 45101 Vision C_ Cleam:buenas tardes karely, soy zuleika le comparto el comprobante de pago y respaldo de factura pagada
-Permagraf:muchas gracias

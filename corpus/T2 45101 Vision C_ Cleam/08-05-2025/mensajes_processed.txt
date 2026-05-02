@@ -1,8 +1,0 @@
-Permagraf:hola buen dia
-Permagraf:te lo facturo aparte
-Permagraf:?
-Permagraf:esque lo demas ya lo facture
-Permagraf:?
-T2 45101 Vision C_ Cleam:si y una calculadora
-T2 45101 Vision C_ Cleam:celica ca -018-12
-Permagraf:muy bien
