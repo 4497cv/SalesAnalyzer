@@ -1,0 +1,5 @@
+*.txt
+*.json
+
+/corpus
+/"chat exports"
