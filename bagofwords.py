@@ -7,7 +7,9 @@ import numpy as np
 import math
 import workspace
 from nltk.corpus import stopwords
+
 stop_es = stopwords.words('spanish')
+
 local_stopwords = {
     # Nombres propios
     'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
@@ -45,14 +47,11 @@ def euclidean_distance(vect_1, vect_2):
     diff = np.array(vect_1) - np.array(vect_2)
     return np.sqrt(np.sum(diff**2))
 
-
 def cosine_similarity(vect_1, vect_2):
     return dot(vect_1, vect_2) / (norm(vect_1) * norm(vect_2))
 
-
 def cosine_distance(vect_1, vect_2):
     return 1 - cosine_similarity(vect_1, vect_2)
-
 
 def process_euclidean_distance_matrix(bow_df) -> None:
     N = bow_df.shape[0]
@@ -89,7 +88,6 @@ def process_cosine_distance_matrix(bow_df) -> None:
 def pre_process_word(word: str) -> str:
     word = re.sub(r'[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]', '', word)
     return word.lower()
-
 
 def _iter_processed_files():
     """Yields (client_name, file_path) for every mensajes_processed.txt in the corpus."""
@@ -216,18 +214,24 @@ def process_tf_idf(bow_df) -> None:
 
 
 def run():
-    workspace.set_workspace_path(os.path.dirname(os.path.abspath(__file__)))
-
+    # crear el vocabulario en base a todos los mensajes del corpus
     vocabulary = process_vocabulary(vocab_lim=100000)
 
+    # procesar el bag of words
     process_bag_of_words(vocabulary, "binary")
+
     bow_b_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_binary.csv"), index_col=0)
 
     process_bag_of_words(vocabulary, "count")
     bow_c_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_count.csv"), index_col=0)
 
+    # calcular matriz TF-IDF
     process_tf_idf(bow_c_df)
+
+    # calcular matriz distancia coseno
     process_cosine_distance_matrix(bow_b_df)
+
+    # calcular matriz de distancia euclidiana
     process_euclidean_distance_matrix(bow_b_df)
 
 

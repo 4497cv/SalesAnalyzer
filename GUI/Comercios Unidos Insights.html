@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comercios Unidos · Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body data-theme="light">
+<div id="root"></div>
+
+<script src="data.js"></script>
+<script src="conversations_data.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components/primitives.jsx"></script>
+<script type="text/babel" src="components/shell.jsx"></script>
+<script type="text/babel" src="components/upload.jsx"></script>
+<script type="text/babel" src="components/dashboard.jsx"></script>
+<script type="text/babel" src="components/explorer.jsx"></script>
+<script type="text/babel" src="components/client.jsx"></script>
+<script type="text/babel" src="components/authors.jsx"></script>
+
+<script type="text/babel">
+const SortTh = ({ label, field, sortKey, sortDir, onSort, style }) => {
+  const active = sortKey === field;
+  return (
+    <th style={{ cursor: "pointer", userSelect: "none", whiteSpace: "nowrap", ...style }}
+        onClick={() => onSort(field)}>
+      {label}
+      <span style={{ marginLeft: 4, opacity: active ? 1 : 0.25, fontSize: 10 }}>
+        {active ? (sortDir === 1 ? "▲" : "▼") : "▲"}
+      </span>
+    </th>
+  );
+};
+
+const DictionaryView = () => {
+  const data = MOCK.domainDictionary || [];
+
+  const topics = React.useMemo(
+    () => [...new Set(data.map(d => d.topicLabel))].sort(),
+    [data]
+  );
+
+  const [search,      setSearch]      = React.useState("");
+  const [filterTopic, setFilterTopic] = React.useState("all");
+  const [filterType,  setFilterType]  = React.useState("all");
+  const [sortKey,     setSortKey]     = React.useState("rank");
+  const [sortDir,     setSortDir]     = React.useState(1);
+
+  const handleSort = React.useCallback(key => {
+    if (sortKey === key) setSortDir(d => d * -1);
+    else { setSortKey(key); setSortDir(1); }
+  }, [sortKey]);
+
+  const filtered = React.useMemo(() => {
+    let result = data.filter(d => {
+      if (filterTopic !== "all" && d.topicLabel !== filterTopic) return false;
+      if (filterType === "uni" &&  d.isBigram)  return false;
+      if (filterType === "bi"  && !d.isBigram) return false;
+      if (search && !d.term.toLowerCase().includes(search.toLowerCase())) return false;
+      return true;
+    });
+    return [...result].sort((a, b) => {
+      const av = a[sortKey], bv = b[sortKey];
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      return (typeof av === "string" ? av.localeCompare(bv) : av - bv) * sortDir;
+    });
+  }, [data, search, filterTopic, filterType, sortKey, sortDir]);
+
+  const sharedSort = { sortKey, sortDir, onSort: handleSort };
+
+  return (
+    <div>
+      <div className="section-head">
+        <div>
+          <h1>Diccionario de producto</h1>
+          <p>{data.length} términos extraídos del corpus · ordenados por relevancia global.</p>
+        </div>
+      </div>
+      <div className="filters">
+        <div className="search-input">
+          <Icon name="search" size={13} />
+          <input placeholder="Buscar término…" value={search} onChange={e => setSearch(e.target.value)} />
+        </div>
+        <select className="input" value={filterTopic} onChange={e => setFilterTopic(e.target.value)}>
+          <option value="all">Topic: todos</option>
+          {topics.map(t => (
+            <option key={t} value={t}>{(TOPIC_STYLES[t] && TOPIC_STYLES[t].label) || t}</option>
+          ))}
+        </select>
+        <select className="input" value={filterType} onChange={e => setFilterType(e.target.value)}>
+          <option value="all">Tipo: todos</option>
+          <option value="uni">Solo unigramas</option>
+          <option value="bi">Solo bigramas</option>
+        </select>
+        <div style={{ marginLeft: "auto", fontSize: 11.5, color: "var(--text-muted)" }}>
+          {filtered.length} de {data.length} términos
+        </div>
+      </div>
+      <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+        <div style={{ overflowX: "auto", maxHeight: "calc(100vh - 260px)", overflowY: "auto" }}>
+          <table className="msg-table" style={{ minWidth: 680 }}>
+            <thead style={{ position: "sticky", top: 0, zIndex: 1, background: "var(--bg-elev)" }}>
+              <tr>
+                <SortTh label="#"       field="rank"       style={{ width: 52 }} {...sharedSort} />
+                <SortTh label="Término" field="term"                             {...sharedSort} />
+                <th>Topic</th>
+                <SortTh label="Score"   field="score"      style={{ width: 90 }} {...sharedSort} />
+                <SortTh label="Docs"    field="docFreq"    style={{ width: 72 }} {...sharedSort} />
+                <SortTh label="% docs"  field="docFreqPct" style={{ width: 80 }} {...sharedSort} />
+                <th style={{ width: 80 }}>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(d => (
+                <tr key={d.rank}>
+                  <td className="col-time" style={{ color: "var(--text-faint)" }}>{d.rank}</td>
+                  <td style={{ fontWeight: 500, fontFamily: "var(--font-mono)", fontSize: 12.5 }}>{d.term}</td>
+                  <td><TopicBadge topic={d.topicLabel} /></td>
+                  <td style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
+                    {typeof d.score === "number" ? d.score.toFixed(2) : "—"}
+                  </td>
+                  <td style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>{d.docFreq}</td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <div style={{
+                        height: 4, borderRadius: 2, flexShrink: 0,
+                        width: Math.max(4, (d.docFreqPct || 0) * 0.8),
+                        background: "var(--brand)", opacity: 0.5,
+                      }} />
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>{d.docFreqPct}%</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span style={{
+                      display: "inline-block", padding: "1px 7px", borderRadius: 999,
+                      fontSize: 11, fontWeight: 500,
+                      background: d.isBigram ? "var(--emo-fear-bg)" : "var(--neu-soft)",
+                      color:      d.isBigram ? "var(--emo-fear-fg)" : "var(--text-muted)",
+                    }}>
+                      {d.isBigram ? "bigrama" : "unigrama"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+class ErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(e) { return { error: e }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{padding: 32, fontFamily: "monospace", color: "#dc2626"}}>
+          <strong>Error al renderizar:</strong>
+          <pre style={{marginTop: 8, whiteSpace: "pre-wrap"}}>{String(this.state.error)}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "density": "comfortable"
+}/*EDITMODE-END*/;
+
+const App = () => {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [view, setView] = React.useState("upload");
+
+  React.useEffect(() => {
+    document.body.setAttribute("data-theme", tweaks.theme);
+  }, [tweaks.theme]);
+
+  const counts = {
+    conversations: MOCK.conversations.length,
+    clients: MOCK.clients.length,
+    authors: MOCK.authorSentiment.length,
+  };
+
+  const titles = {
+    upload:     ["Importar"],
+    dashboard:  ["Dashboard"],
+    explorer:   ["Conversaciones"],
+    client:     ["Clientes"],
+    authors:    ["Sentimiento por autor"],
+    dictionary: ["Diccionario de producto"],
+  };
+
+  return (
+    <div className="app">
+      <Sidebar active={view} onNavigate={setView} counts={counts} />
+      <div className="main">
+        <Topbar
+          crumbs={["Comercios Unidos", ...titles[view]]}
+          actions={
+            <>
+              <span className="tag" data-screen-label={view} style={{fontFamily: "var(--font-mono)"}}>BETO-es · v1.2</span>
+              <button className="btn btn--sm" onClick={() => setTweak("theme", tweaks.theme === "light" ? "dark" : "light")}>
+                {tweaks.theme === "light" ? "🌙" : "☀️"}
+              </button>
+            </>
+          }
+        />
+        <div className="content" data-screen-label={`screen-${view}`}>
+          <ErrorBoundary key={view}>
+            {view === "upload" && <UploadView onComplete={() => setView("dashboard")} />}
+            {view === "dashboard" && <DashboardView />}
+            {view === "explorer" && <ConversationExplorer />}
+            {view === "client"   && <ClientView />}
+            {view === "authors"     && <AuthorsView />}
+            {view === "dictionary"  && <DictionaryView />}
+          </ErrorBoundary>
+        </div>
+      </div>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Apariencia">
+          <TweakRadio label="Tema" value={tweaks.theme} onChange={v => setTweak("theme", v)}
+            options={[{value: "light", label: "Claro"}, {value: "dark", label: "Oscuro"}]} />
+        </TweakSection>
+      </TweaksPanel>
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

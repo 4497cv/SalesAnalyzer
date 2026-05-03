@@ -55,7 +55,6 @@ def _extract_text(line):
     parts = line.split(":", 1)
     return parts[1].strip() if len(parts) > 1 else ""
 
-
 def cargar_conversaciones():
     """Retorna lista de (doc_name, texto_completo) por conversación."""
     corpus_dir = workspace.get_corpus_path()
@@ -91,7 +90,6 @@ def cargar_conversaciones():
                 nombres.append(f"{client}/{session}")
 
     return nombres, documentos
-
 
 # === PIPELINE PRINCIPAL ===
 def run():

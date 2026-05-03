@@ -17,7 +17,7 @@ def parse_chat_lines(lines, chat_name):
         if not line:
             continue
 
-        # New format: [DD/MM/YY, HH:MM:SS a.m.] Author: Message
+        # Procesar formato de whatsapp actual: [DD/MM/YY, HH:MM:SS a.m.] Author: Message
         if line.startswith("["):
             bracket_end = line.find("]")
             if bracket_end == -1:
@@ -28,7 +28,7 @@ def parse_chat_lines(lines, chat_name):
                 continue
             raw_date = date_parts[0].strip()
         else:
-            # Old format: DD/MM/YYYY, HH:MM - Author: Message
+            # Procesar formato de whatsapp antiguo: DD/MM/YYYY, HH:MM - Author: Message
             parts = line.split("-", 1)
             if len(parts) < 2:
                 continue
@@ -45,7 +45,9 @@ def parse_chat_lines(lines, chat_name):
             folder_date = f"{int(day):02d}-{int(month):02d}-{year}"
         except ValueError:
             continue
+
         by_date[folder_date].append(line)
+        
     return by_date
 
 def get_client_name(chat_name):
@@ -73,17 +75,20 @@ def process_txt(filepath):
     # retrieve the name of the target chat
     chat_name = os.path.splitext(os.path.basename(filepath))[0]
 
-    # read the target file
+    # obtener el contenido del archivo especificado
     with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
     
-    # parse the chat 
+    # procesar el contenido del chat
     by_date = parse_chat_lines(lines, chat_name)
 
+    # almacenar el contenido del chat por cliente y fecha en el corpus
     save_corpus(by_date, chat_name)
 
 def process_zip(filepath):
+    # obtener el nombre del archivo zip 
     zip_name = os.path.splitext(os.path.basename(filepath))[0]
+
     with zipfile.ZipFile(filepath, "r") as z:
         for name in z.namelist():
             if name.endswith(".txt"):
@@ -126,31 +131,46 @@ def process_fb_exports():
             print(f"  {client_name}/sin-fecha — {num_messages} mensajes")
             report_entries.append((client_name, 1, num_messages))
 
-
 def run():
-    for filename in os.listdir(SOURCE_DIR):
-        filepath = os.path.join(SOURCE_DIR, filename)
-        if filename.endswith(".txt") and os.path.splitext(filename)[0] not in ("mensajes", "mensajes_processed"):
-            print(f"Procesando: {filename}")
-            process_txt(filepath)
-
-    if os.path.isdir(EXPORTS_DIR):
-        for filename in os.listdir(EXPORTS_DIR):
-            if filename.endswith(".zip"):
-                filepath = os.path.join(EXPORTS_DIR, filename)
-                print(f"Procesando zip: {filename}")
-                process_zip(filepath)
-        process_fb_exports()
+    if not os.path.isdir(CORPUS_DIR):
+        print("Exportando chats de archivos .zip")
+        # verificar si el directorio EXPORTS_DIR existe
+        if os.path.isdir(EXPORTS_DIR):
+            for filename in os.listdir(EXPORTS_DIR):
+                if filename.endswith(".zip"):
+                    filepath = os.path.join(EXPORTS_DIR, filename)
+                    print(f"Procesando zip: {filename}")
+                    process_zip(filepath)
+            process_fb_exports()
+        else:
+            print(f"Carpeta no encontrada: {EXPORTS_DIR}")
     else:
-        print(f"Carpeta no encontrada: {EXPORTS_DIR}")
+        print(f"La carpeta {CORPUS_DIR} ya existe")
+
+    # verificamos si existe el directorio de corpus
+    if os.path.isdir(CORPUS_DIR):
+        for filename in os.listdir(SOURCE_DIR):
+            # obtener la ruta del archivo actual en el directoria principal del repositorio
+            filepath = os.path.join(SOURCE_DIR, filename)
+            # nombre del archivo sin extension
+            filename_parsed = os.path.splitext(filename)[0] 
+            # verificar que la extension del archivo sea .txt
+            if(True == filename.endswith(".txt")) and\
+            (filename_parsed not in ("mensajes", "mensajes_processed")):
+                print(f"Procesando: {filename}")
+                # iniciar el procesamiento del archivo
+                process_txt(filepath)
+    else:
+        print(f"Carpeta no encontrada: {CORPUS_DIR}")
+
 
     print("\nCorpus generado en:", CORPUS_DIR)
 
     report_path = os.path.join(SOURCE_DIR, "corpus_report.log")
+
     with open(report_path, "w", encoding="utf-8") as r:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         r.write(f"Reporte de corpus — {timestamp}\n")
-        r.write(f"{'='*50}\n")
         total_sesiones = sum(n for _, n, _ in report_entries)
         r.write(f"Total de chats procesados: {len(report_entries)}\n")
         r.write(f"Total de sesiones: {total_sesiones}\n\n")

@@ -3,45 +3,84 @@ import preprocess
 import bagofwords
 import test as tfidf_sklearn
 from AI import build_corpus_ner, domain_dictionary, sentiment_analysis, tone_evolution
+import workspace
+import os
+import time
+import chat_cluster
+import generate_gui_data
+import sys
 
-print("=" * 50)
-print("Etapa 1: Construyendo corpus...")
-print("=" * 50)
-build_corpus.run()
+def __main__():
+    args = sys.argv[1:]
 
-print("\n" + "=" * 50)
-print("Etapa 2: Preprocesando mensajes...")
-print("=" * 50)
-preprocess.run()
+    # configurar la ruta del workspace actual
+    workspace.set_workspace_path(os.path.dirname(os.path.abspath(__file__)))
 
-print("\n" + "=" * 50)
-print("Etapa 3a: BoW y matrices de distancia...")
-print("=" * 50)
-bagofwords.run()
+    if(("-corpus" not in args) and\
+       ("-guidata" not in args) and\
+       ("-preprocess" not in args) and\
+       ("-mat" not in args) and\
+       ("-cner" not in args) and\
+       ("-domaindict" not in args) and\
+       ("-sentiment" not in args) and\
+       ("-tone" not in args) and\
+       ("-cluster" not in args) and\
+       ("-guidata" not in args) and\
+       ("-a" not in args)):
+        sys.exit("command not selected")
+    else:
+        print("commands: %s" % args)
 
-print("\n" + "=" * 50)
-print("Etapa 3b: TF-IDF con bigramas (sklearn)...")
-print("=" * 50)
-tfidf_sklearn.run()
+    if(("-corpus" in args) or ("-a" in args)):
+        t_start = time.time()
+        # 1. creacion del corpus en base a mensajes de texto
+        print("Etapa 1: Construyendo corpus...")
+        build_corpus.run()
+        t_stop = time.time()
+        total_time = t_stop - t_start
+        print("Etapa 1 tiempo = %.2f" % total_time)
 
-print("\n" + "=" * 50)
-print("Etapa 4: NER sobre el corpus...")
-print("=" * 50)
-build_corpus_ner.main()
+    if(("-preprocess" in args) or ("-a" in args)):
+        t_start = time.time()
+        # 2. preprocesamiento de mensajes
+        print("Etapa 2: Preprocesando mensajes...")
+        preprocess.run()
+        t_stop = time.time()
+        total_time = t_stop - t_start
+        print("Etapa 2 tiempo = %.2f" % total_time)
 
-print("\n" + "=" * 50)
-print("Etapa 5: Diccionario de dominio...")
-print("=" * 50)
-domain_dictionary.main()
+    if(("-mat" in args) or ("-a" in args)):
+        # calcular bag of words y las matrices TF-IDF, distancia coseno y distancia euclidiana
+        print("Etapa 3a: BoW y matrices de distancia...")
+        bagofwords.run()
 
-print("\n" + "=" * 50)
-print("Etapa 6: Analisis de sentimiento...")
-print("=" * 50)
-sentiment_analysis.main()
+        print("Etapa 3b: TF-IDF con bigramas (sklearn)...")
+        #tfidf_sklearn.run()
 
-print("\n" + "=" * 50)
-print("Etapa 7: Evolucion de tono...")
-print("=" * 50)
-tone_evolution.main()
+    if(("-cner" in args) or ("-a" in args)):
+        print("Etapa 4: NER sobre el corpus...")
+        build_corpus_ner.main()
 
-print("\nPipeline completo.")
+    if(("-domaindict" in args) or ("-a" in args)):
+        print("Etapa 5: Diccionario de dominio...")
+        domain_dictionary.main()
+
+    if(("-sentiment" in args) or ("-a" in args)):
+        print("Etapa 6: Analisis de sentimiento...")
+        sentiment_analysis.main()
+
+    if(("-tone" in args) or ("-a" in args)):
+        print("Etapa 7: Evolucion de tono...")
+        tone_evolution.main()
+
+    if(("-cluster" in args) or ("-a" in args)):
+        print("Etapa 8. Clasificación de conversaciones")
+        chat_cluster.run()
+
+    if(("-guidata" in args) or ("-a" in args)):
+        print("Etapa 9. Generar Datos para GUI")
+        generate_gui_data.main()
+
+    print("\nPipeline completo.")
+
+__main__()

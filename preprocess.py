@@ -8,7 +8,7 @@ from trie import *
 #nltk.download('vader_lexicon')
 unfound_words = []
 
-trie = Trie(language = "es", dict_size = 100000)
+#trie = Trie(language = "es", dict_size = 100000)
 
 def limpiar_emojis_texto(texto):
     EMOJI_RE = re.compile("[\U00010000-\U0010FFFF]", flags=re.UNICODE)
@@ -488,6 +488,7 @@ def normalizacion_bigramas(texto):
                      "nadamas": "nada más",
                      "marcatextos": "marca textos",
                      "aynooooooo": "ay nooooooo",
+                     "esa cuanta": "esa cuenta",
                      }
 
     for bg_erroneo, bg_forma in norm_bigramas.items():
@@ -548,6 +549,7 @@ def preprocess_chat(filename, trie_flag = 0):
                 if(("<Multimedia omitido>" not in line) and\
                    ("Eliminaste este mensaje" not in line) and \
                    ("se eliminó este mensaje" not in line) and \
+                   (("se elim" not in line) and ("este mensaje" not in line)) and\
                    ("(archivo adjunto)"not in line) and \
                    (False == validar_emoji_en_texto(line))):
                     processed_chat.append(processed_text)
