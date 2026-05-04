@@ -94,7 +94,7 @@ const ClientView = () => {
               <div className="timeline">
                 {timeline.map((t, i) => (
                   <div className="tl-row" key={i}>
-                    <div className="tl-date">{t.date}</div>
+                    <div className="tl-date">{t.date.slice(8) + "-" + t.date.slice(5, 7) + "-" + t.date.slice(0, 4)}</div>
                     <div className={`tl-marker tl-marker--${t.type === "pos" ? "won" : t.type === "neg" ? "lost" : "open"}`}>
                       {t.type === "pos" && <Icon name="arrowUp" size={10} />}
                       {t.type === "neg" && <Icon name="arrowDown" size={10} />}

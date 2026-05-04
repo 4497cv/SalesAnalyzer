@@ -1,7 +1,7 @@
 import build_corpus
 import preprocess
 import bagofwords
-import test as tfidf_sklearn
+import tf_idf as tfidf_sklearn
 from AI import build_corpus_ner, domain_dictionary, sentiment_analysis, tone_evolution
 import workspace
 import os
@@ -26,12 +26,14 @@ def __main__():
        ("-tone" not in args) and\
        ("-cluster" not in args) and\
        ("-guidata" not in args) and\
+       ("-help" not in args) and\
        ("-a" not in args)):
+        print("type -h for more commands...")
         sys.exit("command not selected")
     else:
         print("commands: %s" % args)
 
-    if(("-corpus" in args) or ("-a" in args)):
+    if(("-corpus" in args)):
         t_start = time.time()
         # 1. creacion del corpus en base a mensajes de texto
         print("Etapa 1: Construyendo corpus...")
@@ -80,6 +82,17 @@ def __main__():
     if(("-guidata" in args) or ("-a" in args)):
         print("Etapa 9. Generar Datos para GUI")
         generate_gui_data.main()
+    
+    if("-help" in args):
+        print("-corpus: execute build corpus stage")
+        print("-preprocess: execute preprocess text stage")
+        print("-mat: execute TDFIDF and BOW Matrix calculation")
+        print("-ner: execute NER calculation")
+        print("-domaindict: execute domain dict calculation")
+        print("-sentiment: execute sentiment analysis")
+        print("-tone: execute tone analysis")
+        print("-cluster: execute chat cluster analysis")
+        print("-guidata: execute GUI Data generation stage")
 
     print("\nPipeline completo.")
 

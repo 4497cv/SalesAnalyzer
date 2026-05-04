@@ -129,7 +129,7 @@ const ConversationExplorer = () => {
                    onClick={() => setSelectedId(c.id)}>
                 <div className="conv-item__top">
                   <span>{c.clientName}</span>
-                  <span className="conv-item__time">{c.date.slice(5)}</span>
+                  <span className="conv-item__time">{c.date.slice(8) + "-" + c.date.slice(5, 7)}</span>
                 </div>
                 <div className="conv-item__preview">
                   {c.messages[c.messages.length - 1].text}
@@ -173,7 +173,7 @@ const ConversationExplorer = () => {
                   )}
                 </div>
                 <div className="conv-detail__sub">
-                  {selected.session} · {selected.seller} · {selected.date}
+                  {selected.session} · {selected.seller} · {selected.date.slice(8) + "-" + selected.date.slice(5, 7) + "-" + selected.date.slice(0, 4)}
                 </div>
               </div>
               <div className="conv-detail__metrics">

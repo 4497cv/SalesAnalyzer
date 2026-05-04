@@ -12,35 +12,41 @@ stop_es = stopwords.words('spanish')
 
 local_stopwords = {
     # Nombres propios
-    'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra',
-    'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra',
-    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel', 'carmen', 'lolis', 'michelle',
-    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva',
-    'keyla', 'dora', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia', 'katia', 'andrea', 'lesli', 'victoria', 'vicbet', 'bic',
-    'mari', 'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu', 'armando', 'daniela', 'jaime', 'jesus', 'alicia',
+    'kharely', 'karely', 'kareli', 'lupita', 'alejandra', 'alejanda', 'aleajandra', 'ene', 'enel', 'joey', 'jones', 'jose', 'wilson', 'juan', 'junio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+    'mirna', 'oriana', 'casandra', 'sinali', 'sofia', 'neftali', 'cassandra', 'lupita', 'manny', 'maricel', 'briceida', 'byrmax',
+    'karla', 'carla', 'silvia', 'dora', 'elia', 'betzavel', 'betzabel', 'carmen', 'lolis', 'michelle', 'cris', 'cristtel', 'elva', 'godoy', 'gloria', 'gonzalez', 'goo', 'hernandez', 'janel', 'lbel',
+    'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva', 'adminelmaster', 'alo', 'am', 'ama', 'ay', 'axion', 'azo',
+    'keyla', 'dora', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia', 'katia', 'andrea', 'lesli', 'victoria', 'vicbet', 'bic', 'victor', 'iker',
+    'mari', 'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu', 'armando', 'daniela', 'jaime', 'jesus', 'alicia', 'ivan', 'jafra', 'karley', 'katya', 'aracely', 'ramírez', 'raúl', 'bnoi',
     # Empresas / vendedor
-    'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',
-    'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom',
-    'olfa', '.com', 'mvictoriaagri-nova.com', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio', 'ptt', 'wa', 'epson',
-    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'pritt', 'sharpie', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco',
+    'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',  'acme', 'anzor', 'cd', 'cfdi', 'cfe', 'craft', 'cv', 'sa', 'de', 'dell', 'depot', 'hp', 'kirkland', 'kleenex', 'klinex', 'kores', 'kynera', 'rey', 'rfc', 'rh', 'rivales', 'roble',
+    'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom', 'lka', 'maped', 'ty',
+    'olfa', '.com', 'mvictoriaagri-nova.com', 'xerox', 'google', 'bic', 'cedis', 'gmail', 'com', 'mexicofolio', 'ptt', 'wa', 'epson', 'ta', 'tallerelcapulehotmailcom', 'tc', 'tecniclik', 'tge', 'tijuana', 'tr', 'buu', 'bv', 'byd', 'byrmax'
+    'permagrafgmail com', 'permagrafgmail', 'tallerelcapulehotmail', 'tallerelcapulehotmail com', 'pilot', 'kyma', 'pelikan', 'pritt', 'sharpie', 'carnes', 'gps', 'kinera', 'acco', 'azor', 'baco', 'ipad',
+    'auxcomprasvisioncleamcom', 'auxiliardecontabilidadkarfulcom', 'bostitch', 'bostich', 'carlaequiposdeoficina', 'claudiapermagrafgmailcom', 'comprassistemasdeimpresioncom', 'karelyequiposdeoficina',
+    'comprasvisioncleamcom', 'energizer', 'escolight', 'essential', 'esterbrook', 'estrada', 'etc', 'fa', 'fcdrsaa', 'fdw', 'febrero', 'fio', 'httpspedidosdeoficina', 'httpscusawebplacecommx', 'httpsmaps', 'ig', 'big',
     # IDs
-    't1', 't2', 't4', 't5', 't6',
+    't1', 't2', 't4', 't5', 't6', 'ey', 'locker', 'lockers', 'lolys', 'lópez', 'losa', 'litro', 'lux', 'lv', 'mae', 'maily', 'malú', 'maskin', 'masking', 'maskng', 'mastografia', 'sukarne', 'yoyo', 'yeso', 'yuriana', 'zebra', 'xml', 'yucatán',
     # Apellidos
-    'laso', 'roman', 'mora',
+    'laso', 'roman', 'mora', 'paty', 'pc', 'pd', 'pedidosdeoficina', 'pedroinfante', 'pedro', 'infante', 'pentel', 'persme', 'ph', 'pilikan', 'pimp', 'pin', 'pins', 'pl', 'plis', 'rollerball', 'bolsas', 'bolsa',
     # Sistema WhatsApp
-    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 
+    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 'oz', 'padre', 'padrino', 'palicarias', 'sa', 'samsung', 'scotch', 'segosan', 'whatsapp', 'zapata', 'zoologico', 'wax',
     # Ruido
-    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola',
+    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola', 'ingasu', 
+    'buenooooo', 'buenoo', 'eh', 'eja', 'em', 'jaj', 'jajajaajajaja', 'jajajaajjaa', 'jajajaj', 'jajajajaa', 'jajajajaja', 'jajajajajaj', 'jajajajajaja', 'jajajajajajaja', 'jajajajajja', 'jajajajja', 'jajjaaaaa',
+    'jejej', 'jejejej', 'jejejeje', 'jejejejeje', 'jejje', 'jesucursalristo', 'jfelixfconcreditocommx', 'jijij', 'jijijiji', 'porfa',
     # saludos
-    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda',
+    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda', 'fis', 'foamy', 'francés', 'irale', 'iu', 
     # palabras simpples
-    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf', 'mmm', 'mm',
+    'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf', 'mmm', 'mm', 'um', 'uh', 'aaah', 'an', 'do', 'lease', 'lefort', 'lesly', 'mejia', 'pro', 'correctores', 'corrector',
+    # fechas
+    'abril', 'negro', 'negra', 'rojo', 'azul', 'amarillo', 'café', 'niq', 'nissa', 'noel', 'niña', 'ofi', 'okidoki', 'okiiis', 'olguin', 'pues',
     #articulos
-    'ecg',
+    'ecg', 'uñas', 'mfp', 'michel', 'mob', 'ms', 'mst', 'muchacha', 'muchacho',' muchachos', 'mx', 'mérida', 'ne', 'negofile', 'orian', 'pvcb', 'pvc', 'pz', 'pza',
     # regionalismos
-    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 
+    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 'guapo', 'amor', 'cruda', 'mayo', 'member', 'members', 'navolato', 'aaracely',
     # lugares
-    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto', 'per', 'gbc', 'cm'
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto', 'per', 'gbc', 'cm', 'guamuchil', 'hawian', 'free', 'venadillo', 'guasave', 'harpic', 'hdmi', 'humaya',
 }
 
 def euclidean_distance(vect_1, vect_2):
@@ -218,9 +224,8 @@ def run():
     vocabulary = process_vocabulary(vocab_lim=100000)
 
     # procesar el bag of words
-    process_bag_of_words(vocabulary, "binary")
-
-    bow_b_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_binary.csv"), index_col=0)
+    #process_bag_of_words(vocabulary, "binary")
+    #bow_b_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_binary.csv"), index_col=0)
 
     process_bag_of_words(vocabulary, "count")
     bow_c_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_count.csv"), index_col=0)
@@ -229,10 +234,10 @@ def run():
     process_tf_idf(bow_c_df)
 
     # calcular matriz distancia coseno
-    process_cosine_distance_matrix(bow_b_df)
+    #process_cosine_distance_matrix(bow_b_df)
 
     # calcular matriz de distancia euclidiana
-    process_euclidean_distance_matrix(bow_b_df)
+    #process_euclidean_distance_matrix(bow_b_df)
 
 
 if __name__ == "__main__":
