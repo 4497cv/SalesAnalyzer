@@ -58,7 +58,7 @@ def load_domain_dictionary(out_dir):
 def load_topic_clusters(out_dir):
     cluster_path = out_dir + "/topic_label_chat_cluster.csv"
     lookup = {}
-    with open(cluster_path, encoding="utf-8") as f:
+    with open(cluster_path, encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             parts = row["chat"].replace("\\", "/").split("/")
             if len(parts) >= 2:

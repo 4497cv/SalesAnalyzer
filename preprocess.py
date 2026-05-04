@@ -733,6 +733,9 @@ def normalizacion_texto(texto):
     texto = re.sub(r'\blasucursalursal\b', 'la sucursal', texto)
     texto = re.sub(r'\blistav\b', 'lista', texto)
     texto = re.sub(r'\bll han\b', 'llegan', texto)
+    texto = re.sub(r'\bblok\b', 'block', texto)
+    texto = re.sub(r'\bccordon\b', 'cordón', texto)
+
     texto = re.sub(r'\bllagan\b', 'llegan', texto)
     texto = re.sub(r'\blocjker\b', 'locker', texto)
     texto = re.sub(r'\blopago\b', 'lo pago', texto)
@@ -786,7 +789,7 @@ def normalizacion_texto(texto):
     texto = re.sub(r'\bpasop\b', 'pasó', texto)
     texto = re.sub(r'\bpaso\b', 'pasó', texto)
     texto = re.sub(r'\bpañielos\b', 'pañuelos', texto)
-    texto = re.sub(r'\bpbasura\b', 'basura', texto)
+    texto = re.sub(r'\bpbasura\b', 'para basura', texto)
     texto = re.sub(r'\bpededido\b', 'pedido', texto)
     texto = re.sub(r'\bpedi\b', 'pedí', texto)
     texto = re.sub(r'\bperfect\b', 'perfecto', texto)
@@ -867,6 +870,41 @@ def normalizacion_texto(texto):
     texto = re.sub(r'\bbue\b', 'buen', texto) 
     texto = re.sub(r'\bbuenl\b', 'bueno', texto) 
     texto = re.sub(r'\bben\b', 'ven', texto) 
+    texto = re.sub(r'\bestaras\b', 'estarás', texto) 
+    texto = re.sub(r'\bllmar\b', 'llamar', texto) 
+    texto = re.sub(r'\bsucursaleder\b', 'sucursales', texto) 
+    texto = re.sub(r'\bnosse\b', 'no sé', texto) 
+    texto = re.sub(r'\braye\b', 'rallé', texto) 
+    texto = re.sub(r'\bmous\b', 'mouse', texto) 
+    texto = re.sub(r'\bvdd\b', 'verdad', texto) 
+    texto = re.sub(r'\bclasico\b', 'clásico', texto) 
+    texto = re.sub(r'\brecibis\b', 'recibí', texto) 
+    texto = re.sub(r'\bpiza\b', 'pieza', texto) 
+    texto = re.sub(r'\bmientrea\b', 'mientras', texto) 
+    texto = re.sub(r'\bresitoles\b', 'resistoles', texto) 
+    texto = re.sub(r'\bresitol\b', 'resistol', texto) 
+    texto = re.sub(r'\bcogante\b', 'colgante', texto) 
+    texto = re.sub(r'\btcarta\b', 'tamaño carta', texto) 
+    texto = re.sub(r'\bbayan\b', 'vayan', texto) 
+    texto = re.sub(r'\bpsan\b', 'pasan', texto) 
+    texto = re.sub(r'\bquedría\b', 'quedaría', texto) 
+    texto = re.sub(r'\bentiengro\b', 'entiendo', texto) 
+    texto = re.sub(r'\bremisoon\b', 'remisión', texto) 
+    texto = re.sub(r'\btengo+\b', 'tengo', texto) 
+    texto = re.sub(r'\bsale+\b', 'sale', texto) 
+    texto = re.sub(r'\bcotizas+\b', 'cotizas', texto) 
+    texto = re.sub(r'\bener\b', 'enero', texto) 
+    texto = re.sub(r'\bppdras\b', 'podrás', texto) 
+    texto = re.sub(r'\btransparectes\b', 'transparentes', texto) 
+    texto = re.sub(r'\bpulgads\b', 'pulgadas', texto) 
+    texto = re.sub(r'\bsya\b', 'ya', texto) 
+    texto = re.sub(r'\bvde\b', 'verde', texto) 
+    texto = re.sub(r'\bdesgrapador\b', 'desengrapadora', texto) 
+    texto = re.sub(r'\bupaquetes\b', 'paquetes', texto) 
+    texto = re.sub(r'\bmia\b', 'mía', texto) 
+
+    texto = re.sub(r'\bstardes\b', 'tardes', texto) 
+    texto = re.sub(r'\bsn\b', 'son', texto) 
 
     texto = texto.replace("avsio", "aviso")
     texto = texto.replace("ocmo", "como")
@@ -906,6 +944,7 @@ def normalizacion_nombres(texto):
     texto = texto.replace("suc", "sucursal")
     texto = texto.replace("kraf", "craft")
     texto = texto.replace("postick", "post it")
+    texto = texto.replace("lilipepiper", "liquid paper")
 
     texto = re.sub(r'\bdanielaaaaaaaaaa\b', 'daniela', texto)
     texto = re.sub(r'\bculiacan\b', 'culiacán', texto)
@@ -1014,6 +1053,18 @@ def normalizacion_bigramas(texto):
                      "amodificar": "a modificar",
                      "austed": "a usted",
                      "encuanto": "en cuánto",
+                     "bdiacotízame": "buen día cotízame",
+                     "salemuchas": "sale muchas",
+                     "nollego": "no llego",
+                     "sintiene": "si tiene",
+                     "laencargada": "la encargada",
+                     "siporfavor": "si porfavor",
+                     "colorazul": "color azul",
+                     "queusted": "que usted",
+                     "iguala": "igual a",
+                     "noes": "no es",
+                     "conlas": "con las",
+                     "quedepende": "que depende"
                      }
 
     for bg_erroneo, bg_forma in norm_bigramas.items():

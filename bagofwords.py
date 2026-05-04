@@ -4,7 +4,7 @@ import re
 from numpy import dot
 from numpy.linalg import norm
 import numpy as np
-import math
+from collections import Counter
 import workspace
 from nltk.corpus import stopwords
 
@@ -18,6 +18,7 @@ local_stopwords = {
     'rossy', 'rosy', 'rosi', 'rosario', 'rui', 'zuleika', 'zuleica', 'zuelika', 'silva', 'adminelmaster', 'alo', 'am', 'ama', 'ay', 'axion', 'azo',
     'keyla', 'dora', 'ale', 'laura', 'pedro', 'maria', 'aracely', 'mari', 'raul', 'fabiola', 'tia', 'katia', 'andrea', 'lesli', 'victoria', 'vicbet', 'bic', 'victor', 'iker',
     'mari', 'sergio', 'elizabeth', 'patty', 'dios', 'alberto', 'angelita', 'ignacio', 'malu', 'armando', 'daniela', 'jaime', 'jesus', 'alicia', 'ivan', 'jafra', 'karley', 'katya', 'aracely', 'ramírez', 'raúl', 'bnoi',
+    'ruiz', 'mary', 'key', 'natura', 'dixon', 'ndia', 'añitos', 
     # Empresas / vendedor
     'permagraf', 'comercios', 'unidos', 'chiniza', 'siam',  'acme', 'anzor', 'cd', 'cfdi', 'cfe', 'craft', 'cv', 'sa', 'de', 'dell', 'depot', 'hp', 'kirkland', 'kleenex', 'klinex', 'kores', 'kynera', 'rey', 'rfc', 'rh', 'rivales', 'roble',
     'auxcomprasvisioncleamcom', 'alejandrapermagrafgmailcom', 'lka', 'maped', 'ty',
@@ -30,23 +31,26 @@ local_stopwords = {
     # Apellidos
     'laso', 'roman', 'mora', 'paty', 'pc', 'pd', 'pedidosdeoficina', 'pedroinfante', 'pedro', 'infante', 'pentel', 'persme', 'ph', 'pilikan', 'pimp', 'pin', 'pins', 'pl', 'plis', 'rollerball', 'bolsas', 'bolsa',
     # Sistema WhatsApp
-    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 'oz', 'padre', 'padrino', 'palicarias', 'sa', 'samsung', 'scotch', 'segosan', 'whatsapp', 'zapata', 'zoologico', 'wax',
+    'eliminaste', 'mensaje', 'eliminó', 'img', 'pdf', 'opus', 'stk', 'wa', 'webp', 'web', 'jpg', 'oz', 'padre', 'padrino', 'palicarias', 'sa', 'samsung', 'scotch', 'segosan', 'whatsapp', 'zapata', 'zoologico', 'wax', 'reogan',
     # Ruido
-    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola', 'ingasu', 
+    'aa', 'aaa', 'aaaa', 'aah', 'ah', 'ahh', 'ahhh', 'jaja', 'jajaja', 'jajajaja', 'este', 'ok', '☺️', '...', '0⁰', 'jeje', 'jejeje', 'jajaj', 'oh', 'eh', 'oye', 'pa', 'shola', 'ingasu', 'cloralex', 'gatorades', 'admonferrelaminasgmailcom', 'platos', 'italiano', 'enrute', 'hombre', 'volverme', 'canica', 'canciones', 'desmadre',
     'buenooooo', 'buenoo', 'eh', 'eja', 'em', 'jaj', 'jajajaajajaja', 'jajajaajjaa', 'jajajaj', 'jajajajaa', 'jajajajaja', 'jajajajajaj', 'jajajajajaja', 'jajajajajajaja', 'jajajajajja', 'jajajajja', 'jajjaaaaa',
-    'jejej', 'jejejej', 'jejejeje', 'jejejejeje', 'jejje', 'jesucursalristo', 'jfelixfconcreditocommx', 'jijij', 'jijijiji', 'porfa',
+    'jejej', 'jejejej', 'jejejeje', 'jejejejeje', 'jejje', 'jesucursalristo', 'jfelixfconcreditocommx', 'jijij', 'jijijiji', 'porfa', 'delga', 'bacoflash', 'tares', 'vaga', 'cabos', 'blockcaja', 'italiana', 'pistaches', 'enero', 'vert', 'sujetos', 'miran',  'fuschia', 'block', 'alan', 'aeropuerto', 'aventuras', 'flojeras', 'rei', 'many', 'cojin', 'video', 'tranquila', 'manches', 'yeah', 'meneses'
+    'sino', 'chanza', 'reponiendome', 'colgante', 'medicos', 'encierrame', 'santo', 'bailado', 'domingo', 'mirkahigueragmailcom', 'nosé', 'borbon', 'no', 'bb', 'trupper', 'son', 'sol', 'estrellas', 'arreglarme', 'ed', 'mochos', 'dps', 'desengrapadora', 'gises', 'mia', 'cincho',
     # saludos
-    'buenos', 'dias', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda', 'fis', 'foamy', 'francés', 'irale', 'iu', 
+    'buenos', 'días', 'día', 'buenas', 'tardes', 'hola', 'dia', 'gracias', 'muchas', 'bien', 'muy', 'hola', 'Qué onda', 'que onda', 'fis', 'foamy', 'francés', 'irale', 'iu', 'liquid', 'paper', 'texto',
+    'buena tarde', 'buena', 'bueno', 'tarde', 'buen', 'buena', 'quedo', 'da', 'muchísimas', 'ayer', 'hoy', 'broches', 'toner', 'cutter', 'tinta', 'tintas',
     # palabras simpples
     'si', 'no', 'nose', 'pm', 'zas', 'qui', 'que', ' it', 'cf', 'mmm', 'mm', 'um', 'uh', 'aaah', 'an', 'do', 'lease', 'lefort', 'lesly', 'mejia', 'pro', 'correctores', 'corrector',
     # fechas
     'abril', 'negro', 'negra', 'rojo', 'azul', 'amarillo', 'café', 'niq', 'nissa', 'noel', 'niña', 'ofi', 'okidoki', 'okiiis', 'olguin', 'pues',
     #articulos
-    'ecg', 'uñas', 'mfp', 'michel', 'mob', 'ms', 'mst', 'muchacha', 'muchacho',' muchachos', 'mx', 'mérida', 'ne', 'negofile', 'orian', 'pvcb', 'pvc', 'pz', 'pza',
+    'ecg', 'uñas', 'mfp', 'michel', 'mob', 'ms', 'mst', 'muchacha', 'muchacho',' muchachos', 'mx', 'mérida', 'ne', 'negofile', 'orian', 'pvcb', 'pvc', 'pz', 'pza', 'post it', 'block', 'post', 'it', 'bonito', 'fin', 'aquí', 'andamos', 'pasta', 'dura', 'cartón', 'cinta', 'canela', 'marca', 'textos', 'marcatextos', 'verde', 'cutter', 'fin', 'carpetas', 'hojas', 'blancas', 'cuadrados',
     # regionalismos
-    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 'guapo', 'amor', 'cruda', 'mayo', 'member', 'members', 'navolato', 'aaracely',
+    'mija', 'onda', 'bendito', 'cañera', 'tomatera', 'dormilona', 'guapo', 'amor', 'cruda', 'mayo', 'member', 'members', 'navolato', 'aaracely', 'cómo', 
     # lugares
-    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto', 'per', 'gbc', 'cm', 'guamuchil', 'hawian', 'free', 'venadillo', 'guasave', 'harpic', 'hdmi', 'humaya',
+    'sanalona', 'culiacan', 'mazatlan', 'villas', 'estación', 'valle', 'alto', 'per', 'gbc', 'cm', 'guamuchil', 'hawian', 'free', 'venadillo', 'guasave', 'harpic', 'hdmi', 'humaya', 'basura', 'bolsas', 'bolsa',
+    'mous', 'monitor', 'agua va', 'agua', 'va', 'equiposdeoficina',  'esco', 'beisbol', 'alas', 'cordón',
 }
 
 def euclidean_distance(vect_1, vect_2):
@@ -117,32 +121,49 @@ def _extract_text(line: str) -> str:
     return parts[1] if len(parts) > 1 else ""
     
 
-def process_vocabulary(vocab_lim=500) -> set:
+def process_vocabulary(vocab_lim=500, bigram_min_df=3) -> set:
     """
     Builds vocabulary from all mensajes_processed.txt files in the corpus.
+    Includes unigrams and bigrams that appear in at least bigram_min_df documents.
 
     Parameters:
-        vocab_lim: maximum vocabulary size
+        vocab_lim:      maximum total vocabulary size
+        bigram_min_df:  minimum document frequency for a bigram to be included
 
     Return:
-        set of words
+        set of words (unigrams and bigrams)
     """
     vocabulary = set()
+    bigram_doc_freq = Counter()
 
     for _, file_path in _iter_processed_files():
+        doc_bigrams = set()
         with open(file_path, "r", encoding="utf-8-sig") as f:
             for line in f:
-                text = _extract_text(line.strip())
-                for word in text.split():
+                tokens = []
+                for word in _extract_text(line.strip()).split():
                     if len(word) > 1:
                         word = pre_process_word(word)
-                        if(word.isalpha()) and\
-                          (len(word) > 1) and\
-                          (word not in stop_es) and\
-                          (word not in local_stopwords):
+                        if word.isalpha() and len(word) > 1 \
+                                and word not in stop_es \
+                                and word not in local_stopwords:
                             vocabulary.add(word)
-                            if len(vocabulary) >= vocab_lim:
-                                return vocabulary
+                            tokens.append(word)
+                for i in range(len(tokens) - 1):
+                    doc_bigrams.add(f"{tokens[i]} {tokens[i+1]}")
+        for bg in doc_bigrams:
+            bigram_doc_freq[bg] += 1
+
+    for bg, df in bigram_doc_freq.most_common():
+        if df < bigram_min_df:
+            break
+        vocabulary.add(bg)
+
+    if len(vocabulary) > vocab_lim:
+        unigrams = {v for v in vocabulary if ' ' not in v}
+        top_bigrams = [bg for bg, _ in bigram_doc_freq.most_common()
+                       if bigram_doc_freq[bg] >= bigram_min_df]
+        vocabulary = unigrams | set(top_bigrams[:max(0, vocab_lim - len(unigrams))])
 
     return vocabulary
 
@@ -150,16 +171,18 @@ def process_vocabulary(vocab_lim=500) -> set:
 def process_bag_of_words(vocabulary: set, type="binary") -> None:
     """
     Generates a bag of words where each document is one client (all sessions combined).
+    Counts both unigrams and bigrams present in vocabulary.
     Stores result in output/bow_matrix_{type}.csv.
 
     Parameters:
-        vocabulary: set of words
+        vocabulary: set of words (may include bigrams with spaces)
         type: "binary" or "count"
 
     Return:
         None
     """
     vocab_list = sorted(list(vocabulary))
+    has_bigrams = any(' ' in v for v in vocabulary)
     bow_matrix = []
     doc_names = []
 
@@ -171,14 +194,28 @@ def process_bag_of_words(vocabulary: set, type="binary") -> None:
 
         with open(file_path, "r", encoding="utf-8-sig") as f:
             for line in f:
+                tokens = []
                 for word in _extract_text(line.strip()).split():
                     if len(word) > 1:
-                        word = pre_process_word(word)
-                        if word in bow:
+                        w = pre_process_word(word)
+                        if not w.isalpha() or len(w) <= 1:
+                            continue
+                        if w in bow:
                             if type == "binary":
-                                bow[word] = 1
+                                bow[w] = 1
                             else:
-                                bow[word] += 1
+                                bow[w] += 1
+                        if w not in stop_es and w not in local_stopwords:
+                            tokens.append(w)
+
+                if has_bigrams:
+                    for i in range(len(tokens) - 1):
+                        bg = f"{tokens[i]} {tokens[i+1]}"
+                        if bg in bow:
+                            if type == "binary":
+                                bow[bg] = 1
+                            else:
+                                bow[bg] += 1
 
         bow_matrix.append([bow[w] for w in vocab_list])
         doc_names.append(doc_name)
@@ -187,41 +224,9 @@ def process_bag_of_words(vocabulary: set, type="binary") -> None:
     output_path = workspace.get_output_path()
     bag_of_words_df.to_csv(os.path.join(output_path, f"bow_matrix_{type}.csv"), encoding="utf-8-sig")
 
-
-def process_tf_idf(bow_df) -> None:
-    """
-    Generates TF-IDF matrix from a BoW DataFrame and stores it in output/tf_idf_matrix.csv.
-
-    Parameters:
-        bow_df: pandas DataFrame (count BoW)
-
-    Return:
-        None
-    """
-    idf = {}
-    tfidf_matrix = []
-    N = bow_df.shape[0]
-    df = (bow_df > 0).sum(axis=0)
-
-    for word in bow_df.columns:
-        idf[word] = math.log(N / (1 + df[word]))
-
-    for _, row in bow_df.iterrows():
-        total_words = row.sum()
-        tfidf_row = []
-        for word in bow_df.columns:
-            tf = row[word] / total_words if total_words > 0 else 0
-            tfidf_row.append(tf * idf[word])
-        tfidf_matrix.append(tfidf_row)
-
-    tfidf_df = pd.DataFrame(tfidf_matrix, index=bow_df.index, columns=bow_df.columns)
-    output_path = workspace.get_output_path()
-    tfidf_df.to_csv(os.path.join(output_path, "tf_idf_matrix.csv"), encoding="utf-8-sig")
-
-
 def run():
     # crear el vocabulario en base a todos los mensajes del corpus
-    vocabulary = process_vocabulary(vocab_lim=100000)
+    vocabulary = process_vocabulary(vocab_lim=100000, bigram_min_df=3)
 
     # procesar el bag of words
     #process_bag_of_words(vocabulary, "binary")
@@ -229,9 +234,6 @@ def run():
 
     process_bag_of_words(vocabulary, "count")
     bow_c_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_count.csv"), index_col=0)
-
-    # calcular matriz TF-IDF
-    process_tf_idf(bow_c_df)
 
     # calcular matriz distancia coseno
     #process_cosine_distance_matrix(bow_b_df)

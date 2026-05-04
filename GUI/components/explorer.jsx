@@ -8,6 +8,7 @@ const ConversationExplorer = () => {
   const [dateRange,    setDateRange]    = React.useState("all");
   const [sortValence,  setSortValence]  = React.useState("none");
   const [filterAlert,  setFilterAlert]  = React.useState("all");
+  const [filterTopic,  setFilterTopic]  = React.useState("all");
   const [search,       setSearch]       = React.useState("");
   const [hoverMsg,     setHoverMsg]     = React.useState(null);
   const [tooltipPos,   setTooltipPos]   = React.useState({x: 0, y: 0});
@@ -35,6 +36,7 @@ const ConversationExplorer = () => {
       if (cutoff && c.date < cutoff) return false;
       if (filterAlert === "alert" && !c.hasAlert) return false;
       if (filterAlert === "ok"    &&  c.hasAlert) return false;
+      if (filterTopic !== "all" && c.topicCluster !== filterTopic) return false;
       if (search) {
         const q = search.toLowerCase();
         if (!c.clientName.toLowerCase().includes(q) &&
@@ -45,13 +47,13 @@ const ConversationExplorer = () => {
     if (sortValence === "pos") result = [...result].sort((a, b) => b.avgValence - a.avgValence);
     if (sortValence === "neg") result = [...result].sort((a, b) => a.avgValence - b.avgValence);
     return result;
-  }, [filterClient, filterOffice, cutoff, search, sortValence, filterAlert]);
+  }, [filterClient, filterOffice, cutoff, search, sortValence, filterAlert, filterTopic]);
 
   const selected = filtered.find(c => c.id === selectedId) || filtered[0];
 
   React.useEffect(() => {
     if (selected && selected.id !== selectedId) setSelectedId(selected.id);
-  }, [filterClient, filterOffice, dateRange, search, sortValence, filterAlert]);
+  }, [filterClient, filterOffice, dateRange, search, sortValence, filterAlert, filterTopic]);
 
   return (
     <div>
@@ -109,6 +111,14 @@ const ConversationExplorer = () => {
           <option value="all">Advertencias: todas</option>
           <option value="alert">⚠ Solo con advertencia</option>
           <option value="ok">Sin advertencia</option>
+        </select>
+
+        <select className="input" value={filterTopic}
+                onChange={e => setFilterTopic(e.target.value)}>
+          <option value="all">Tag: todos</option>
+          {Object.entries(TOPIC_STYLES).map(([key, s]) => (
+            <option key={key} value={key}>{s.label}</option>
+          ))}
         </select>
 
         <div style={{marginLeft: "auto", fontSize: 11.5, color: "var(--text-muted)"}}>

@@ -1,7 +1,7 @@
 import build_corpus
 import preprocess
 import bagofwords
-import tf_idf as tfidf_sklearn
+import tf_idf
 from AI import build_corpus_ner, domain_dictionary, sentiment_analysis, tone_evolution
 import workspace
 import os
@@ -28,7 +28,7 @@ def __main__():
        ("-guidata" not in args) and\
        ("-help" not in args) and\
        ("-a" not in args)):
-        print("type -h for more commands...")
+        print("type -help for more commands...")
         sys.exit("command not selected")
     else:
         print("commands: %s" % args)
@@ -56,8 +56,8 @@ def __main__():
         print("Etapa 3a: BoW y matrices de distancia...")
         bagofwords.run()
 
-        print("Etapa 3b: TF-IDF con bigramas (sklearn)...")
-        #tfidf_sklearn.run()
+        print("Etapa 3b: TF-IDF con bigramas...")
+        tf_idf.run(custom=1)
 
     if(("-cner" in args) or ("-a" in args)):
         print("Etapa 4: NER sobre el corpus...")

@@ -75,14 +75,14 @@ const AuthorChip = ({ author, role }) => (
 );
 
 const TOPIC_STYLES = {
-  pedido_entrega:           { bg: "var(--brand-soft)",      fg: "var(--brand)",            label: "Pedido/Entrega" },
-  logistica_envio:          { bg: "var(--emo-surprise-bg)", fg: "var(--emo-surprise-fg)",  label: "Logística/Envío" },
-  soporte_problema:         { bg: "var(--neg-soft)",        fg: "var(--neg-strong)",       label: "Soporte" },
-  producto_consulta:        { bg: "var(--emo-joy-bg)",      fg: "var(--emo-joy-fg)",       label: "Consulta Producto" },
-  precio_cotizacion:        { bg: "var(--emo-fear-bg)",     fg: "var(--emo-fear-fg)",      label: "Precio/Cotización" },
-  confirmacion_seguimiento: { bg: "var(--pos-soft)",        fg: "var(--pos-strong)",       label: "Seguimiento" },
-  pago_facturacion:         { bg: "var(--emo-sadness-bg)",  fg: "var(--emo-sadness-fg)",   label: "Pago/Facturación" },
-  promocion_oferta:         { bg: "#fef9c3",                fg: "#854d0e",                 label: "Promoción" },
+  facturacion_y_llegadas:         { bg: "var(--brand-soft)",      fg: "var(--brand)",           label: "Facturación/Llegadas" },
+  atencion_y_revision_paquetes:   { bg: "var(--emo-surprise-bg)", fg: "var(--emo-surprise-fg)", label: "Revisión Paquetes" },
+  servicio_cotizacion_inicial:    { bg: "var(--emo-joy-bg)",      fg: "var(--emo-joy-fg)",      label: "Cotización Inicial" },
+  cotizaciones_y_precios:         { bg: "var(--emo-fear-bg)",     fg: "var(--emo-fear-fg)",     label: "Cotizaciones/Precios" },
+  seguimiento_pedidos_correo:     { bg: "var(--pos-soft)",        fg: "var(--pos-strong)",      label: "Seguimiento Pedidos" },
+  ordenes_compra_faltantes:       { bg: "var(--neg-soft)",        fg: "var(--neg-strong)",      label: "Órdenes/Faltantes" },
+  verificacion_inventario:        { bg: "#fef9c3",                fg: "#854d0e",                label: "Verificación Inventario" },
+  pagos_y_comprobantes:           { bg: "var(--emo-sadness-bg)",  fg: "var(--emo-sadness-fg)",  label: "Pagos/Comprobantes" },
 };
 
 const TopicBadge = ({ topic, style }) => {

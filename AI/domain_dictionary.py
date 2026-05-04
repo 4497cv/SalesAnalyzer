@@ -36,17 +36,56 @@ TOP_PER_CLUSTER = 30
 TOP_PER_TOPIC   = 25
 MIN_GLOBAL_SCORE = 0.0  # keep all terms; filter downstream if needed
 
+PRIORITY_TERMS = {
+    "factura", "facturar", "pago", "cotización", "paquete",
+    "facturación", "facturame", "pedido", "órden", "existencia", "cotizas", "cotizar",
+}
+
+# Overrides the topic_label LDA assigned to specific terms.
+TERM_TOPIC_OVERRIDES = {
+    # cotización
+    "cotización":  "cotizaciones_y_precios",
+    "cotizar":     "cotizaciones_y_precios",
+    "cotizas":     "cotizaciones_y_precios",
+    "cotiza":      "cotizaciones_y_precios",
+    "cotizamos":   "cotizaciones_y_precios",
+    "cotizaste":   "cotizaciones_y_precios",
+    "cotizaciones":"cotizaciones_y_precios",
+    "cotizado":    "cotizaciones_y_precios",
+    "cotizando":   "cotizaciones_y_precios",
+    # facturación
+    "facturar":    "facturacion_y_llegadas",
+    "facturación": "facturacion_y_llegadas",
+    "facturame":   "facturacion_y_llegadas",
+    "factura":     "facturacion_y_llegadas",
+    "facturamos":  "facturacion_y_llegadas",
+    "facturaste":  "facturacion_y_llegadas",
+    "facturado":   "facturacion_y_llegadas",
+    "facturando":  "facturacion_y_llegadas",
+    "facture":     "facturacion_y_llegadas",
+    "facturo":     "facturacion_y_llegadas",
+    "facturé":     "facturacion_y_llegadas",
+    "facturas":    "facturacion_y_llegadas",
+    "puedo facturar": "facturacion_y_llegadas",
+    "pago": "pagos_y_comprobantes",
+    "pagos": "pagos_y_comprobantes",
+    "pagar": "pagos_y_comprobantes",
+    "comprobante de pago": "pagos_y_comprobantes",
+    "comprobante": "pagos_y_comprobantes",
+
+}
+
 # Human-readable labels assigned after inspecting the top words of each topic.
 # They are placeholders — re-run and update after you see the actual terms.
 TOPIC_LABELS = {
-    0: "producto_consulta",
-    1: "precio_cotizacion",
-    2: "pedido_entrega",
-    3: "pago_facturacion",
-    4: "soporte_problema",
-    5: "confirmacion_seguimiento",
-    6: "promocion_oferta",
-    7: "logistica_envio",
+    0: "facturacion_y_llegadas",
+    1: "atencion_y_revision_paquetes",
+    2: "servicio_cotizacion_inicial",
+    3: "cotizaciones_y_precios",
+    4: "seguimiento_pedidos_correo",
+    5: "ordenes_compra_faltantes",
+    6: "verificacion_inventario",
+    7: "pagos_y_comprobantes"
 }
 
 
@@ -220,8 +259,6 @@ def print_summary(dictionary_df: pd.DataFrame, n_topics: int) -> None:
         print(f"  Cluster {int(cid)}: {', '.join(terms)}")
 
 
-# ── main ─────────────────────────────────────────────────────────────────────
-
 def main():
     workspace.set_workspace_path(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -246,6 +283,23 @@ def main():
     # 5. build unified dictionary
     dictionary_df = build_dictionary(
         global_scores, doc_freq, cluster_df, topic_df, total_docs=len(tfidf_df)
+    )
+
+    # boost priority terms to the top of the ranking
+    boost = dictionary_df["global_score"].max() * 10
+    mask  = dictionary_df["term"].isin(PRIORITY_TERMS)
+    dictionary_df.loc[mask, "global_score"] += boost
+    dictionary_df = (
+        dictionary_df
+        .sort_values("global_score", ascending=False)
+        .reset_index(drop=True)
+    )
+    dictionary_df["rank"] = dictionary_df.index + 1
+
+    # apply manual topic overrides
+    override_mask = dictionary_df["term"].isin(TERM_TOPIC_OVERRIDES)
+    dictionary_df.loc[override_mask, "topic_label"] = (
+        dictionary_df.loc[override_mask, "term"].map(TERM_TOPIC_OVERRIDES)
     )
 
     # 6. save
