@@ -75,7 +75,7 @@ def __main__():
         print("Etapa 7: Evolucion de tono...")
         tone_evolution.main()
 
-    if(("-cluster" in args) or ("-a" in args)):
+    if(("-cluster" in args)):
         print("Etapa 8. Clasificación de conversaciones")
         chat_cluster.run()
 
