@@ -75,14 +75,16 @@ const AuthorChip = ({ author, role }) => (
 );
 
 const TOPIC_STYLES = {
-  facturacion_y_llegadas:         { bg: "var(--brand-soft)",      fg: "var(--brand)",           label: "Facturación/Llegadas" },
-  atencion_y_revision_paquetes:   { bg: "var(--emo-surprise-bg)", fg: "var(--emo-surprise-fg)", label: "Revisión Paquetes" },
-  servicio_cotizacion_inicial:    { bg: "var(--emo-joy-bg)",      fg: "var(--emo-joy-fg)",      label: "Cotización Inicial" },
-  cotizaciones_y_precios:         { bg: "var(--emo-fear-bg)",     fg: "var(--emo-fear-fg)",     label: "Cotizaciones/Precios" },
-  seguimiento_pedidos_correo:     { bg: "var(--pos-soft)",        fg: "var(--pos-strong)",      label: "Seguimiento Pedidos" },
-  ordenes_compra_faltantes:       { bg: "var(--neg-soft)",        fg: "var(--neg-strong)",      label: "Órdenes/Faltantes" },
-  verificacion_inventario:        { bg: "#fef9c3",                fg: "#854d0e",                label: "Verificación Inventario" },
-  pagos_y_comprobantes:           { bg: "var(--emo-sadness-bg)",  fg: "var(--emo-sadness-fg)",  label: "Pagos/Comprobantes" },
+  "Facturación_Documentos": { bg: "var(--brand-soft)",      fg: "var(--brand)",           label: "Facturación" },
+  "Cotización/Presupuesto": { bg: "var(--emo-joy-bg)",      fg: "var(--emo-joy-fg)",      label: "Cotización" },
+  "Consulta de Precio":     { bg: "var(--emo-fear-bg)",     fg: "var(--emo-fear-fg)",     label: "Consulta de Precio" },
+  Soporte:                  { bg: "var(--pos-soft)",        fg: "var(--pos-strong)",      label: "Soporte" },
+  "Confirmación_Estado":    { bg: "var(--neu-soft)",        fg: "var(--text-muted)",      label: "Confirmación" },
+  "Gestión de Pedidos/Entregas": { bg: "var(--emo-anger-bg)", fg: "var(--emo-anger-fg)", label: "Pedidos/Entregas" },
+  "Seguimiento de Ventas":  { bg: "var(--emo-sadness-bg)", fg: "var(--emo-sadness-fg)", label: "Seguimiento" },
+  "Interacción/Relacional": { bg: "var(--emo-surprise-bg)",fg: "var(--emo-surprise-fg)",label: "Relacional" },
+  "Cancelación":            { bg: "var(--neg-soft)",       fg: "var(--neg-strong)",      label: "Cancelación" },
+  "No Clasificado":         { bg: "#f3f4f6",               fg: "#9ca3af",                label: "No Clasificado" },
 };
 
 const TopicBadge = ({ topic, style }) => {

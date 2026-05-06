@@ -1,5 +1,11 @@
 *.txt
 *.json
+*.log
+.claudeignore
+CLAUDE.md
 
 /corpus
-/"chat exports"
+/chat exports
+/__pycache__
+/AI/__pycache__
+/output
