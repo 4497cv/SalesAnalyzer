@@ -44,7 +44,13 @@ from collections import defaultdict
 import workspace
 from preprocess import extract_author_text, normalize_for_sentiment
 
-# ── carga del modelo ──────────────────────────────────────────────────────────
+try:
+    from pysentimiento import create_analyzer
+except Exception as e:
+    print(f"ERROR al importar pysentimiento: {e}")
+    print("Verifica: pip install pysentimiento transformers torch")
+    sys.exit(1)
+
 
 def load_analyzer():
     try:
@@ -65,17 +71,24 @@ def load_analyzer():
     return analyzer
 
 
-# ── lectura del corpus ────────────────────────────────────────────────────────
-
 def iter_sessions(corpus_dir: str):
     return _iter_sessions(corpus_dir)
 
 
 def load_messages(filepath: str) -> list[tuple[str, str]]:
-    return _load_messages(filepath, normalize_for_sentiment)
+    from preprocess import extract_author_text
+    messages = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            author, text = extract_author_text(line)
+            text = normalize_for_sentiment(text)
+            if text:
+                messages.append((author, text))
+    return messages
 
-
-# ── inferencia de sentimiento ─────────────────────────────────────────────────
 
 LABEL_MAP = {"POS": 1, "NEU": 0, "NEG": -1}
 
@@ -101,9 +114,6 @@ def predict_messages(messages: list[tuple[str, str]], analyzer) -> list[dict]:
             "score":  round(score, 4),
         })
     return results
-
-
-# ── metricas por sesion ───────────────────────────────────────────────────────
 
 def session_metrics(client: str, date: str, preds: list[dict]) -> dict:
     """Agrega las predicciones de una sesion en una fila de metricas."""
@@ -162,9 +172,6 @@ def _trajectory(preds: list[dict], segments: int = 10) -> list[float]:
         traj.append(round(avg, 4))
     return traj
 
-
-# ── metricas por autor ────────────────────────────────────────────────────────
-
 def author_metrics(all_message_rows: list[dict]) -> pd.DataFrame:
     """
     Agrupa todas las predicciones por autor y calcula sus metricas globales.
@@ -198,8 +205,6 @@ def author_metrics(all_message_rows: list[dict]) -> pd.DataFrame:
 
     return pd.DataFrame(rows).sort_values("avg_score", ascending=False)
 
-
-# ── impresion de resumen ──────────────────────────────────────────────────────
 
 def print_summary(session_df: pd.DataFrame) -> None:
     print(f"\n{'='*65}")
@@ -240,8 +245,6 @@ def print_summary(session_df: pd.DataFrame) -> None:
         print(f"  {client:<40} {score:+.4f}  {bar}")
 
 
-# ── main ──────────────────────────────────────────────────────────────────────
-
 def main():
     workspace.set_workspace_path(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -249,7 +252,8 @@ def main():
     corpus_dir = workspace.get_corpus_path()
     output_dir = workspace.get_output_path()
 
-    analyzer = load_analyzer()
+    print("Cargando modelo de sentimiento")
+    analyzer = create_analyzer(task="sentiment", lang="es")
 
     session_rows    = []
     message_rows    = []
@@ -262,6 +266,7 @@ def main():
         print(f"[{idx}/{len(sessions)}] {client}/{date}", end=" … ", flush=True)
 
         messages = load_messages(filepath)
+
         if not messages:
             print("sin mensajes, omitida.")
             continue

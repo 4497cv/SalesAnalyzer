@@ -1169,16 +1169,11 @@ def clean_for_sentiment(texto: str) -> str:
 
 
 def normalize_for_sentiment(texto: str) -> str:
-    """
-    Pipeline completo para preparar un mensaje antes de sentiment analysis.
-    Aplica: correccion de typos -> puntuacion -> bigramas -> limpieza de sentimiento.
-    """
     texto = normalizacion_texto(texto)
     texto = normalizacion_puntuacion(texto)
     texto = normalizacion_bigramas(texto)
     texto = clean_for_sentiment(texto)
     return texto
-
 
 def run():
     corpus_dir = os.path.join(os.path.dirname(__file__), "corpus")
@@ -1186,7 +1181,6 @@ def run():
         if not txt_file.endswith("_processed.txt"):
             print(f"Procesando: {txt_file}")
             preprocess_chat(txt_file)
-
 
 if __name__ == "__main__":
     run()

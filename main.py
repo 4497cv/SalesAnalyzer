@@ -57,7 +57,7 @@ def __main__():
         bagofwords.run()
 
         print("Etapa 3b: TF-IDF con bigramas...")
-        tf_idf.run(custom=1)
+        tf_idf.run()
 
     if(("-cner" in args) or ("-a" in args)):
         print("Etapa 4: NER sobre el corpus...")
