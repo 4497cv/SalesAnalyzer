@@ -2,7 +2,6 @@ import re
 import glob
 import os
 import nltk
-from trie import *
 #from googletrans import Translator
 
 #nltk.download('vader_lexicon')
@@ -10,6 +9,11 @@ unfound_words = []
 
 #trie = Trie(language = "es", dict_size = 100000)
 
+
+def pre_process_word(word):
+    word = re.sub(r'[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]', '', word)
+    return word.lower()
+    
 def limpiar_emojis_texto(texto):
     EMOJI_RE = re.compile("[\U00010000-\U0010FFFF]", flags=re.UNICODE)
     return EMOJI_RE.sub("", texto).strip()
@@ -1116,11 +1120,6 @@ def preprocess_chat(filename, trie_flag = 0):
                 text = normalizacion_nombres(text)
 
                 processed_text = author + ":" + text
-                words_list = re.split(r"[ .,]+", text)
-                
-                if(trie_flag):
-                    found_words, similar_words, unfound_words = trie.process_text_optimized(words_list)
-                    unfound_words.append(unfound_words)
 
                 if(("<Multimedia omitido>" not in line) and\
                    ("Eliminaste este mensaje" not in line) and \
@@ -1141,26 +1140,26 @@ def preprocess_chat(filename, trie_flag = 0):
             for element in unfound_words:
                 f3.write(str(element) + "\n")
 
-def extract_author_text(line: str) -> tuple[str, str]:
-    """
-    Parsea una linea en formato 'author:text' de mensajes_processed.txt.
-    Retorna (author, text). Si no hay ':', retorna ('', line).
-    """
+def extract_author_text(line):
     parts = line.strip().split(":", 1)
     if len(parts) == 2:
         return parts[0].strip(), parts[1].strip()
     return "", line.strip()
 
+def load_messages(filepath):
+    messages = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            author, text = extract_author_text(line)
+            text = normalize_for_sentiment(text)
+            if text:
+                messages.append((author, text))
+    return messages
 
-def clean_for_sentiment(texto: str) -> str:
-    """
-    Limpieza adicional orientada a sentiment analysis:
-    - Elimina URLs
-    - Elimina menciones @usuario
-    - Colapsa espacios multiples
-    - Elimina tokens numericos puros (precios, telefonos no aportan sentimiento)
-    - Elimina tokens de un solo caracter
-    """
+def clean_for_sentiment(texto):
     texto = re.sub(r"https?://\S+|www\.\S+", "", texto)
     texto = re.sub(r"@\w+", "", texto)
     texto = re.sub(r"\b\d+\b", "", texto)
@@ -1168,7 +1167,7 @@ def clean_for_sentiment(texto: str) -> str:
     return " ".join(tokens).strip()
 
 
-def normalize_for_sentiment(texto: str) -> str:
+def normalize_for_sentiment(texto):
     texto = normalizacion_texto(texto)
     texto = normalizacion_puntuacion(texto)
     texto = normalizacion_bigramas(texto)

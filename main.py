@@ -1,14 +1,9 @@
-import build_corpus
-import preprocess
-import bagofwords
-import tf_idf
-from AI import build_corpus_ner, domain_dictionary, sentiment_analysis, tone_evolution
 import workspace
 import os
-import time
-import chat_cluster
-import generate_gui_data
 import sys
+import time
+import webbrowser
+import subprocess
 
 def __main__():
     args = sys.argv[1:]
@@ -20,7 +15,7 @@ def __main__():
        ("-guidata" not in args) and\
        ("-preprocess" not in args) and\
        ("-mat" not in args) and\
-       ("-cner" not in args) and\
+       ("-ner" not in args) and\
        ("-domaindict" not in args) and\
        ("-sentiment" not in args) and\
        ("-tone" not in args) and\
@@ -34,6 +29,7 @@ def __main__():
         print("commands: %s" % args)
 
     if(("-corpus" in args)):
+        import build_corpus
         t_start = time.time()
         # 1. creacion del corpus en base a mensajes de texto
         print("Etapa 1: Construyendo corpus...")
@@ -43,6 +39,7 @@ def __main__():
         print("Etapa 1 tiempo = %.2f" % total_time)
 
     if(("-preprocess" in args) or ("-a" in args)):
+        import preprocess
         t_start = time.time()
         # 2. preprocesamiento de mensajes
         print("Etapa 2: Preprocesando mensajes...")
@@ -52,6 +49,8 @@ def __main__():
         print("Etapa 2 tiempo = %.2f" % total_time)
 
     if(("-mat" in args) or ("-a" in args)):
+        import bagofwords
+        import tf_idf
         # calcular bag of words y las matrices TF-IDF, distancia coseno y distancia euclidiana
         print("Etapa 3a: BoW y matrices de distancia...")
         bagofwords.run()
@@ -59,30 +58,36 @@ def __main__():
         print("Etapa 3b: TF-IDF con bigramas...")
         tf_idf.run()
 
-    if(("-cner" in args) or ("-a" in args)):
-        print("Etapa 4: NER sobre el corpus...")
-        build_corpus_ner.main()
-
     if(("-domaindict" in args) or ("-a" in args)):
+        import domain_dict
         print("Etapa 5: Diccionario de dominio...")
-        domain_dictionary.main()
+        domain_dict.run()
 
     if(("-sentiment" in args) or ("-a" in args)):
+        import sentiment_analysis
         print("Etapa 6: Analisis de sentimiento...")
-        sentiment_analysis.main()
+        sentiment_analysis.run()
 
     if(("-tone" in args) or ("-a" in args)):
+        import tone_evolution
         print("Etapa 7: Evolucion de tono...")
-        tone_evolution.main()
+        tone_evolution.run()
 
-    if(("-cluster" in args)):
+    if(("-cluster" in args) or ("-a" in args)):
+        import auto_label
         print("Etapa 8. Clasificación de conversaciones")
-        chat_cluster.run()
+        auto_label.run()
 
     if(("-guidata" in args) or ("-a" in args)):
+        import generate_gui_data
         print("Etapa 9. Generar Datos para GUI")
         generate_gui_data.main()
-    
+        gui_dir = os.path.join(workspace.get_workspace_path(), "GUI")
+        puerto = 8765
+        subprocess.Popen([sys.executable, "-m", "http.server", str(puerto)], cwd=gui_dir)
+        time.sleep(0.5)
+        webbrowser.open(f"http://localhost:{puerto}/Comercios%20Unidos%20Insights.html")
+
     if("-help" in args):
         print("-corpus: execute build corpus stage")
         print("-preprocess: execute preprocess text stage")

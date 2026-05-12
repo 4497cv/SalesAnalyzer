@@ -53,64 +53,29 @@ local_stopwords = {
     'mous', 'monitor', 'agua va', 'agua', 'va', 'equiposdeoficina',  'esco', 'beisbol', 'alas', 'cordón',
 }
 
-def euclidean_distance(vect_1, vect_2):
-    diff = np.array(vect_1) - np.array(vect_2)
-    return np.sqrt(np.sum(diff**2))
-
-def cosine_similarity(vect_1, vect_2):
-    return dot(vect_1, vect_2) / (norm(vect_1) * norm(vect_2))
-
-def cosine_distance(vect_1, vect_2):
-    return 1 - cosine_similarity(vect_1, vect_2)
-
-def process_euclidean_distance_matrix(bow_df) -> None:
-    N = bow_df.shape[0]
-    eucl_matrix = np.zeros((N, N))
-    vectors = bow_df.values
-
-    for i in range(N):
-        for j in range(N):
-            eucl_matrix[i, j] = euclidean_distance(vectors[i], vectors[j])
-
-    documents_list = bow_df.index.tolist()
-    eucl_df = pd.DataFrame(eucl_matrix, index=documents_list, columns=documents_list)
-
-    output_path = workspace.get_output_path()
-    eucl_df.to_csv(os.path.join(output_path, "euclidean_dist_matrix.csv"), encoding="utf-8-sig")
-
-
-def process_cosine_distance_matrix(bow_df) -> None:
-    N = bow_df.shape[0]
-    cos_mat = np.zeros((N, N))
-    vectors = bow_df.values
-
-    for i in range(N):
-        for j in range(N):
-            cos_mat[i, j] = cosine_distance(vectors[i], vectors[j])
-
-    documents_list = bow_df.index.tolist()
-    cos_df = pd.DataFrame(cos_mat, index=documents_list, columns=documents_list)
-
-    output_path = workspace.get_output_path()
-    cos_df.to_csv(os.path.join(output_path, "cosine_dist_matrix.csv"), encoding="utf-8-sig")
-
-
-def pre_process_word(word: str) -> str:
+def pre_process_word(word):
     word = re.sub(r'[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]', '', word)
+    word.lower()
     return word.lower()
 
-def _iter_processed_files():
-    """Yields (client_name, file_path) for every mensajes_processed.txt in the corpus."""
-    corpus_dir = workspace.get_corpus_path()
-    for client in os.listdir(corpus_dir):
-        client_path = os.path.join(corpus_dir, client)
+def get_client_and_path():
+    # obtenemos el cliente a partir de la lista del directorio del corpus
+    for client in os.listdir(workspace.get_corpus_path()):
+        # obtenemos la ruta del cliente
+        client_path = os.path.join(workspace.get_corpus_path(), client)
+        # verificamos que la ruta exista
         if not os.path.isdir(client_path):
             continue
+
         for session in os.listdir(client_path):
+            # obtenemos la ruta de la sesion encontrada
             session_path = os.path.join(client_path, session)
+            # verificamos si esta ruta es valida
             if not os.path.isdir(session_path):
                 continue
+            # obtenemos la ruta del archivo
             file_path = os.path.join(session_path, "mensajes_processed.txt")
+
             if os.path.exists(file_path):
                 yield client, file_path
 
@@ -121,22 +86,11 @@ def _extract_text(line: str) -> str:
     return parts[1] if len(parts) > 1 else ""
     
 
-def process_vocabulary(vocab_lim=500, bigram_min_df=3) -> set:
-    """
-    Builds vocabulary from all mensajes_processed.txt files in the corpus.
-    Includes unigrams and bigrams that appear in at least bigram_min_df documents.
-
-    Parameters:
-        vocab_lim:      maximum total vocabulary size
-        bigram_min_df:  minimum document frequency for a bigram to be included
-
-    Return:
-        set of words (unigrams and bigrams)
-    """
+def process_vocabulary(vocab_lim=500, bigram_min_df=3):
     vocabulary = set()
     bigram_doc_freq = Counter()
 
-    for _, file_path in _iter_processed_files():
+    for _, file_path in get_client_and_path():
         doc_bigrams = set()
         with open(file_path, "r", encoding="utf-8-sig") as f:
             for line in f:
@@ -161,32 +115,27 @@ def process_vocabulary(vocab_lim=500, bigram_min_df=3) -> set:
 
     if len(vocabulary) > vocab_lim:
         unigrams = {v for v in vocabulary if ' ' not in v}
-        top_bigrams = [bg for bg, _ in bigram_doc_freq.most_common()
-                       if bigram_doc_freq[bg] >= bigram_min_df]
-        vocabulary = unigrams | set(top_bigrams[:max(0, vocab_lim - len(unigrams))])
+        top_bigrams = []
+        for bg, _ in bigram_doc_freq.most_common():
+            if bigram_doc_freq[bg] >= bigram_min_df:
+                top_bigrams.append(bg)
+        limit = max(0, vocab_lim - len(unigrams))
+        vocabulary = unigrams | set(top_bigrams[:limit])
 
     return vocabulary
 
 
-def process_bag_of_words(vocabulary: set, type="binary") -> None:
-    """
-    Generates a bag of words where each document is one client (all sessions combined).
-    Counts both unigrams and bigrams present in vocabulary.
-    Stores result in output/bow_matrix_{type}.csv.
-
-    Parameters:
-        vocabulary: set of words (may include bigrams with spaces)
-        type: "binary" or "count"
-
-    Return:
-        None
-    """
+def process_bag_of_words(vocabulary, type="binary"):
     vocab_list = sorted(list(vocabulary))
-    has_bigrams = any(' ' in v for v in vocabulary)
+    has_bigrams = False
+    for v in vocabulary:
+        if ' ' in v:
+            has_bigrams = True
+            break
     bow_matrix = []
     doc_names = []
 
-    for client, file_path in _iter_processed_files():
+    for client, file_path in get_client_and_path():
         session = os.path.basename(os.path.dirname(file_path))
         doc_name = f"{client}/{session}"
         print(f"processing {doc_name}")
@@ -227,20 +176,5 @@ def process_bag_of_words(vocabulary: set, type="binary") -> None:
 def run():
     # crear el vocabulario en base a todos los mensajes del corpus
     vocabulary = process_vocabulary(vocab_lim=100000, bigram_min_df=3)
-
-    # procesar el bag of words
-    #process_bag_of_words(vocabulary, "binary")
-    #bow_b_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_binary.csv"), index_col=0)
-
+    # generar bag of words a partir del vocabulario
     process_bag_of_words(vocabulary, "count")
-    bow_c_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_count.csv"), index_col=0)
-
-    # calcular matriz distancia coseno
-    #process_cosine_distance_matrix(bow_b_df)
-
-    # calcular matriz de distancia euclidiana
-    #process_euclidean_distance_matrix(bow_b_df)
-
-
-if __name__ == "__main__":
-    run()

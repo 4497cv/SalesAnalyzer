@@ -72,7 +72,7 @@ def save_corpus(by_date, chat_name):
     report_entries.append((client, len(by_date), total_messages))
 
 def process_txt(filepath):
-    # retrieve the name of the target chat
+    # obtener el nombre del chat objetivo
     chat_name = os.path.splitext(os.path.basename(filepath))[0]
 
     # obtener el contenido del archivo especificado
@@ -93,45 +93,15 @@ def process_zip(filepath):
         for name in z.namelist():
             if name.endswith(".txt"):
                 base = os.path.splitext(os.path.basename(name))[0]
-                # _chat.txt is the generic name used by newer WhatsApp exports
+                # _chat.txt es el nombre generico que usan las exportaciones nuevas de WhatsApp
                 chat_name = zip_name if base == "_chat" else base
                 with z.open(name) as f:
                     lines = f.read().decode("utf-8").splitlines(keepends=True)
                 by_date = parse_chat_lines(lines, chat_name)
                 save_corpus(by_date, chat_name)
 
-def process_fb_exports():
-    fb_dir = os.path.join(EXPORTS_DIR, "FB")
-    if not os.path.isdir(fb_dir):
-        return
-
-    for product in os.listdir(fb_dir):
-        product_path = os.path.join(fb_dir, product)
-        if not os.path.isdir(product_path):
-            continue
-        for client in os.listdir(product_path):
-            if client == product:
-                continue
-            msg_file = os.path.join(product_path, client, "mensaje.txt")
-            if not os.path.isfile(msg_file):
-                continue
-
-            client_name = f"FB {product} {client}"
-            date_dir = os.path.join(CORPUS_DIR, client_name, "sin-fecha")
-            os.makedirs(date_dir, exist_ok=True)
-
-            with open(msg_file, "r", encoding="utf-8") as f:
-                lines = f.readlines()
-
-            out_path = os.path.join(date_dir, "mensajes.txt")
-            with open(out_path, "w", encoding="utf-8") as f:
-                f.writelines(lines)
-
-            num_messages = len([l for l in lines if l.strip()])
-            print(f"  {client_name}/sin-fecha — {num_messages} mensajes")
-            report_entries.append((client_name, 1, num_messages))
-
 def run():
+    # exportamos chats de whatsapp si el directorio del corpus no existe
     if not os.path.isdir(CORPUS_DIR):
         print("Exportando chats de archivos .zip")
         # verificar si el directorio EXPORTS_DIR existe
@@ -141,7 +111,6 @@ def run():
                     filepath = os.path.join(EXPORTS_DIR, filename)
                     print(f"Procesando zip: {filename}")
                     process_zip(filepath)
-            process_fb_exports()
         else:
             print(f"Carpeta no encontrada: {EXPORTS_DIR}")
     else:
@@ -178,7 +147,3 @@ def run():
             r.write(f"  {client}: {num_dates} sesiones, {num_messages} mensajes\n")
 
     print(f"Reporte guardado en: {report_path}")
-
-
-if __name__ == "__main__":
-    run()

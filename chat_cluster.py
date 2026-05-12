@@ -2,30 +2,25 @@ import os
 import sys
 import pandas
 from sklearn.linear_model import LogisticRegression
-
-sys.stdout.reconfigure(encoding="utf-8")
-
+import workspace
 
 def load_tf_idf_train():
-    csv_path = os.path.join(os.path.dirname(__file__), "ML", "tf_idf_matrix_filtrado.csv")
+    csv_path = os.path.join(workspace.get_ml_path(), "tf_idf_matrix_filtrado.csv")
     df = pandas.read_csv(csv_path, encoding="utf-8-sig", index_col=0)
     return df
 
 def load_tf_idf_clases():
-    csv_path = os.path.join(os.path.dirname(__file__), "ML", "tf_idf_clases_filtradas.csv")
+    csv_path = os.path.join(workspace.get_ml_path(), "tf_idf_clases_filtradas.csv")
     df = pandas.read_csv(csv_path, encoding="utf-8-sig")
     df = df.set_index('Chat')
     return df['Clase']
 
 def load_tf_idf_all():
-    csv_path = os.path.join(os.path.dirname(__file__), "ML", "tf_idf_matrix.csv")
+    csv_path = os.path.join(workspace.get_output_path(), "tf_idf_matrix.csv")
     df = pandas.read_csv(csv_path, encoding="utf-8-sig", index_col=0)
     return df
 
-
 def run():
-    output_dir = os.path.join(os.path.dirname(__file__), "output")
-
     # 1. Cargar datos de entrenamiento
     print("Cargando datos...")
     X_train = load_tf_idf_train()
@@ -47,24 +42,26 @@ def run():
     print("\nPrediciendo clases para todas las conversaciones...")
     X_all = load_tf_idf_all()
 
-    predicciones  = model.predict(X_all)
+    predicciones = model.predict(X_all)
     probabilidades = model.predict_proba(X_all)
-    confianzas    = probabilidades.max(axis=1)
+    confianzas = probabilidades.max(axis=1)
 
-    # Conversaciones con baja confianza → "No Clasificado"
+
     CONFIANZA_MINIMA = 0.4
-    clases_finales = [
-        pred if conf >= CONFIANZA_MINIMA else "No Clasificado"
-        for pred, conf in zip(predicciones, confianzas)
-    ]
+    clases_finales = []
+    for pred, conf in zip(predicciones, confianzas):
+        if conf >= CONFIANZA_MINIMA:
+            clases_finales.append(pred)
+        else:
+            clases_finales.append("No Clasificado")
 
     # 4. Armar y guardar resultado en el mismo formato que antes
     resultado = pandas.DataFrame({
-        'chat':          X_all.index,
+        'chat': X_all.index,
         'topic_cluster': clases_finales,
     })
 
-    out_path = os.path.join(output_dir, "topic_label_chat_cluster.csv")
+    out_path = os.path.join(workspace.get_output_path(), "topic_label_chat_cluster.csv")
     resultado.to_csv(out_path, index=False, encoding="utf-8-sig")
     print(f"  Guardado en: {out_path}")
 

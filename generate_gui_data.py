@@ -3,7 +3,7 @@ Generates GUI/conversations_data.js from output/tone_messages.csv and
 output/sentiment_by_author.csv.
 Run once after each pipeline execution: python generate_gui_data.py
 """
-import csv, json, re
+import csv, json, os, re
 from collections import defaultdict, Counter
 import workspace
 
@@ -43,14 +43,12 @@ def load_domain_dictionary(out_dir):
     with open(path, encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             terms.append({
-                "rank":        int(row["rank"]),
-                "term":        row["term"],
-                "score":       round(float(row["global_score"]), 3),
-                "docFreq":     int(row["doc_freq"]),
-                "docFreqPct":  round(float(row["doc_freq_pct"]), 1),
-                "isBigram":    row["is_bigram"] == "True",
-                "topicLabel":  row["topic_label"],
-                "topicRank":   int(row["topic_rank"]),
+                "rank":       int(row["rank"]),
+                "term":       row["term"],
+                "score":      round(float(row["global_score"]), 3),
+                "docFreq":    int(row["doc_freq"]),
+                "docFreqPct": round(float(row["doc_freq_pct"]), 1),
+                "isBigram":   row["is_bigram"] == "True",
             })
     return terms
 
@@ -58,6 +56,8 @@ def load_domain_dictionary(out_dir):
 def load_topic_clusters(out_dir):
     cluster_path = out_dir + "/topic_label_chat_cluster.csv"
     lookup = {}
+    if not os.path.exists(cluster_path):
+        return lookup
     with open(cluster_path, encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             parts = row["chat"].replace("\\", "/").split("/")

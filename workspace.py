@@ -88,3 +88,15 @@ def get_output_path(debug = 0):
         os.makedirs(output_path, exist_ok=True)
 
     return output_path
+
+def get_ml_path(debug = 0):
+    global workspace_path
+    ml_path = os.path.join(workspace_path, "ML")
+
+    if(os.path.exists(ml_path)):
+        if(debug): print("Path exists for ml %s" % ml_path)
+    else:
+        if(debug): print("New path created for ml %s" % ml_path)
+        os.makedirs(ml_path, exist_ok=True)
+
+    return ml_path

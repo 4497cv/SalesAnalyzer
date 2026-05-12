@@ -1,36 +1,14 @@
 import os
 import pandas as pd
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.corpus import stopwords
+import math
 import workspace
 from bagofwords import local_stopwords
-import math
+from nltk.corpus import stopwords
 
-# === STOPWORDS ===
 stop_es = set(stopwords.words('spanish'))
-
-# Preservar solo negaciones y cuantificadores con valor semántico real
-preservar = {'nunca', 'nada', 'sin', 'menos', 'poco'}
-stop_es = stop_es - preservar
-
 todas_stopwords = list(stop_es | local_stopwords)
 
-# === EXTRAER TEXTO POR CONVERSACIÓN ===
-def _extract_text(line):
-    parts = line.split(":", 1)
-    return parts[1].strip() if len(parts) > 1 else ""
-
-def process_tf_idf(bow_df) -> None:
-    """
-    Generates TF-IDF matrix from a BoW DataFrame and stores it in output/tf_idf_matrix.csv.
-
-    Parameters:
-        bow_df: pandas DataFrame (count BoW)
-
-    Return:
-        None
-    """
+def process_tf_idf(bow_df):
     idf = {}
     tfidf_matrix = []
     N = bow_df.shape[0]
@@ -50,14 +28,13 @@ def process_tf_idf(bow_df) -> None:
     tfidf_df = pd.DataFrame(tfidf_matrix, index=bow_df.index, columns=bow_df.columns)
     return tfidf_df
 
-def run(custom=1):
+def run():
     workspace.set_workspace_path(os.path.dirname(os.path.abspath(__file__)))
-    
-    print("Running Custom TF-IDF")
-    # calcular matriz TF-IDF
+
     bow_c_df = pd.read_csv(os.path.join(workspace.get_output_path(), "bow_matrix_count.csv"), index_col=0)
     tfidf_df = process_tf_idf(bow_c_df)
     tfidf_df.to_csv(os.path.join(workspace.get_output_path(), "tf_idf_matrix.csv"), encoding="utf-8-sig")
+    print("se ha generado tf_idf_matrix.csv")
 
 if __name__ == "__main__":
     run()
