@@ -23,16 +23,16 @@ def __main__():
        ("-guidata" not in args) and\
        ("-help" not in args) and\
        ("-a" not in args)):
-        print("type -help for more commands...")
-        sys.exit("command not selected")
+        print("escribe -help para ver los comandos disponibles...")
+        sys.exit("comando no seleccionado")
     else:
-        print("commands: %s" % args)
+        print("comandos: %s" % args)
 
     if(("-corpus" in args)):
         import build_corpus
         t_start = time.time()
         # 1. creacion del corpus en base a mensajes de texto
-        print("Etapa 1: Construyendo corpus...")
+        print("Etapa 1: Construyendo corpus")
         build_corpus.run()
         t_stop = time.time()
         total_time = t_stop - t_start
@@ -42,7 +42,7 @@ def __main__():
         import preprocess
         t_start = time.time()
         # 2. preprocesamiento de mensajes
-        print("Etapa 2: Preprocesando mensajes...")
+        print("Etapa 2: Preprocesando mensajes")
         preprocess.run()
         t_stop = time.time()
         total_time = t_stop - t_start
@@ -51,8 +51,8 @@ def __main__():
     if(("-mat" in args) or ("-a" in args)):
         import bagofwords
         import tf_idf
-        # calcular bag of words y las matrices TF-IDF, distancia coseno y distancia euclidiana
-        print("Etapa 3a: BoW y matrices de distancia...")
+        # 3. calcular bag of words y las matrices TF-IDF, distancia coseno y distancia euclidiana
+        print("Etapa 3a: BoW y matrices de distancia")
         bagofwords.run()
 
         print("Etapa 3b: TF-IDF con bigramas...")
@@ -60,27 +60,27 @@ def __main__():
 
     if(("-domaindict" in args) or ("-a" in args)):
         import domain_dict
-        print("Etapa 5: Diccionario de dominio...")
+        print("Etapa 4: Diccionario de dominio")
         domain_dict.run()
 
     if(("-sentiment" in args) or ("-a" in args)):
         import sentiment_analysis
-        print("Etapa 6: Analisis de sentimiento...")
+        print("Etapa 5: Analisis de sentimiento")
         sentiment_analysis.run()
 
     if(("-tone" in args) or ("-a" in args)):
         import tone_evolution
-        print("Etapa 7: Evolucion de tono...")
+        print("Etapa 6: Evolucion de tono")
         tone_evolution.run()
 
     if(("-cluster" in args) or ("-a" in args)):
         import auto_label
-        print("Etapa 8. Clasificación de conversaciones")
+        print("Etapa 7. Clasificación de conversaciones")
         auto_label.run()
 
     if(("-guidata" in args) or ("-a" in args)):
         import generate_gui_data
-        print("Etapa 9. Generar Datos para GUI")
+        print("Etapa 8. Generar Datos para GUI")
         generate_gui_data.main()
         gui_dir = os.path.join(workspace.get_workspace_path(), "GUI")
         puerto = 8765
@@ -89,15 +89,15 @@ def __main__():
         webbrowser.open(f"http://localhost:{puerto}/Comercios%20Unidos%20Insights.html")
 
     if("-help" in args):
-        print("-corpus: execute build corpus stage")
-        print("-preprocess: execute preprocess text stage")
-        print("-mat: execute TDFIDF and BOW Matrix calculation")
-        print("-ner: execute NER calculation")
-        print("-domaindict: execute domain dict calculation")
-        print("-sentiment: execute sentiment analysis")
-        print("-tone: execute tone analysis")
-        print("-cluster: execute chat cluster analysis")
-        print("-guidata: execute GUI Data generation stage")
+        print("-a: ejecutar todas las etapas del pipeline ")
+        print("-corpus: construir corpus desde exportaciones de WhatsApp")
+        print("-preprocess: preprocesar mensajes del corpus")
+        print("-mat: calcular matrices BoW y TF-IDF")
+        print("-domaindict: generar diccionario de dominio")
+        print("-sentiment: analisis de sentimiento")
+        print("-tone: analisis de evolucion de tono")
+        print("-cluster: clasificacion de conversaciones")
+        print("-guidata: generar datos para la GUI")
 
     print("\nPipeline completo.")
 

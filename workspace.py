@@ -16,7 +16,7 @@ def set_workspace_path(path, debug = 0):
         print(">> ERROR: Path does not exist: %s" % path)
         sys.exit()   
 
-def get_workspace_path() -> str:
+def get_workspace_path():
     global workspace_path
     return workspace_path
 

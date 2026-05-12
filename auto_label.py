@@ -205,7 +205,7 @@ def run():
             continue
         
         # informacion del cliente
-        client  = chat_info_split[0]
+        client = chat_info_split[0]
         # numero de sesion
         session = chat_info_split[1]
 
