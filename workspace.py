@@ -61,7 +61,6 @@ def get_corpus_path(debug = 0):
         if(debug): print("Path exists for corpus %s" % corpus_path)
     else:
         if(debug): print("New path created for corpus %s" % corpus_path)
-        os.makedirs(corpus_path, exist_ok=True)
 
     return corpus_path
 

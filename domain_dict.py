@@ -45,10 +45,6 @@ def run():
 
     dictionary_df = build_dictionary(global_scores, doc_freq, total_docs=len(tfidf_df))
 
-    boost = dictionary_df["global_score"].max() * 10
-    mask  = dictionary_df["term"].isin(PRIORITY_TERMS)
-    dictionary_df.loc[mask, "global_score"] += boost
-
     dictionary_df = dictionary_df.sort_values("global_score", ascending=False).reset_index(drop=True)
     dictionary_df["rank"] = dictionary_df.index + 1
 
