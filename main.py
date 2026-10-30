@@ -20,6 +20,7 @@ def __main__():
        ("-sentiment" not in args) and\
        ("-tone" not in args) and\
        ("-cluster" not in args) and\
+       ("-classify" not in args) and\
        ("-guidata" not in args) and\
        ("-help" not in args) and\
        ("-a" not in args)):
@@ -78,9 +79,14 @@ def __main__():
         print("Etapa 7. Clasificación de conversaciones")
         auto_label.run()
 
+    if(("-classify" in args) or ("-a" in args)):
+        import conv_classifier
+        print("Etapa 8. Clasificador XGBoost de conversaciones")
+        conv_classifier.run()
+
     if(("-guidata" in args) or ("-a" in args)):
         import generate_gui_data
-        print("Etapa 8. Generar Datos para GUI")
+        print("Etapa 9. Generar Datos para GUI")
         generate_gui_data.main()
         gui_dir = os.path.join(workspace.get_workspace_path(), "GUI")
         puerto = 8765
@@ -96,7 +102,8 @@ def __main__():
         print("-domaindict: generar diccionario de dominio")
         print("-sentiment: analisis de sentimiento")
         print("-tone: analisis de evolucion de tono")
-        print("-cluster: clasificacion de conversaciones")
+        print("-cluster: etiquetado de conversaciones con reglas")
+        print("-classify: clasificador XGBoost entrenado con las etiquetas de las reglas")
         print("-guidata: generar datos para la GUI")
 
     print("\nPipeline completo.")

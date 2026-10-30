@@ -9,7 +9,7 @@ T1 Betzavel Laso Roman/26-02-2026,Facturación_Documentos
 T1 Betzavel Laso Roman/29-01-2026,Cancelación
 T1 Betzavel Laso Roman/30-01-2026,Gestión de Pedidos/Entregas
 T1 Carmen Karful 45143/02-03-2026,Cotización/Presupuesto
-T1 Carmen Karful 45143/03-02-2026,Facturación_Documentos
+T1 Carmen Karful 45143/03-02-2026,Cotización/Presupuesto
 T1 Carmen Karful 45143/03-03-2026,Gestión de Pedidos/Entregas
 T1 Carmen Karful 45143/04-02-2026,Gestión de Pedidos/Entregas
 T1 Carmen Karful 45143/04-03-2026,Cotización/Presupuesto
@@ -19,13 +19,13 @@ T1 Carmen Karful 45143/09-02-2026,Facturación_Documentos
 T1 Carmen Karful 45143/10-02-2026,Facturación_Documentos
 T1 Carmen Karful 45143/11-03-2026,Facturación_Documentos
 T1 Carmen Karful 45143/12-03-2026,Facturación_Documentos
-T1 Carmen Karful 45143/13-03-2026,Facturación_Documentos
+T1 Carmen Karful 45143/13-03-2026,Cancelación
 T1 Carmen Karful 45143/18-03-2026,Facturación_Documentos
 T1 Carmen Karful 45143/19-03-2026,Confirmación_Estado
 T1 Carmen Karful 45143/23-01-2026,Confirmación_Estado
 T1 Carmen Karful 45143/23-03-2026,Confirmación_Estado
 T1 Carmen Karful 45143/24-02-2026,Confirmación_Estado
-T1 Carmen Karful 45143/25-04-2026,Facturación_Documentos
+T1 Carmen Karful 45143/25-04-2026,Cotización/Presupuesto
 T1 Carmen Karful 45143/27-02-2026,Facturación_Documentos
 T1 Carmen Karful 45143/27-03-2026,Gestión de Pedidos/Entregas
 T1 Carmen Karful 45143/28-02-2026,Cotización/Presupuesto
@@ -38,12 +38,12 @@ T1 Dulce 45871/14-04-2026,Gestión de Pedidos/Entregas
 T1 Dulce 45871/18-02-2026,Interacción/Relacional
 T1 Dulce 45871/20-03-2026,Interacción/Relacional
 T1 Dulce 45871/21-03-2026,Confirmación_Estado
-T1 Dulce 45871/25-04-2026,Confirmación_Estado
+T1 Dulce 45871/25-04-2026,Gestión de Pedidos/Entregas
 T1 Dulce 45871/31-01-2026,Confirmación_Estado
 T1 Patricia 30049 Urrea ✨🍀🙏🏻/10-04-2026,Interacción/Relacional
 T1 Patricia 30049 Urrea ✨🍀🙏🏻/17-04-2026,Gestión de Pedidos/Entregas
 T1 Patricia 30049 Urrea ✨🍀🙏🏻/23-02-2026,Interacción/Relacional
-T2  Oriana 46797 Taller Capule Oriana/02-09-2024,Facturación_Documentos
+T2  Oriana 46797 Taller Capule Oriana/02-09-2024,Cotización/Presupuesto
 T2  Oriana 46797 Taller Capule Oriana/02-10-2024,Interacción/Relacional
 T2  Oriana 46797 Taller Capule Oriana/02-12-2025,Interacción/Relacional
 T2  Oriana 46797 Taller Capule Oriana/03-02-2026,Gestión de Pedidos/Entregas
@@ -72,7 +72,7 @@ T2  Oriana 46797 Taller Capule Oriana/20-08-2025,Interacción/Relacional
 T2  Oriana 46797 Taller Capule Oriana/21-01-2026,Interacción/Relacional
 T2  Oriana 46797 Taller Capule Oriana/21-03-2026,Facturación_Documentos
 T2  Oriana 46797 Taller Capule Oriana/21-06-2025,Interacción/Relacional
-T2  Oriana 46797 Taller Capule Oriana/21-08-2025,Confirmación_Estado
+T2  Oriana 46797 Taller Capule Oriana/21-08-2025,Interacción/Relacional
 T2  Oriana 46797 Taller Capule Oriana/21-10-2025,Gestión de Pedidos/Entregas
 T2  Oriana 46797 Taller Capule Oriana/22-02-2024,Confirmación_Estado
 T2  Oriana 46797 Taller Capule Oriana/23-03-2026,Confirmación_Estado
@@ -93,7 +93,7 @@ T2  Oriana 46797 Taller Capule Oriana/30-01-2024,Confirmación_Estado
 T2  Oriana 46797 Taller Capule Oriana/30-07-2024,Gestión de Pedidos/Entregas
 T2  Oriana 46797 Taller Capule Oriana/30-10-2025,Facturación_Documentos
 T2  Oriana 46797 Taller Capule Oriana/30-11-2024,Interacción/Relacional
-T2  Oriana 46797 Taller Capule Oriana/31-10-2025,Interacción/Relacional
+T2  Oriana 46797 Taller Capule Oriana/31-10-2025,Facturación_Documentos
 T2 44338_Chavez A_Victoria/02-09-2025,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/03-09-2025,Cotización/Presupuesto
 T2 44338_Chavez A_Victoria/05-06-2025,Gestión de Pedidos/Entregas
@@ -102,7 +102,7 @@ T2 44338_Chavez A_Victoria/05-12-2025,Confirmación_Estado
 T2 44338_Chavez A_Victoria/06-02-2025,Cotización/Presupuesto
 T2 44338_Chavez A_Victoria/06-06-2025,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/06-10-2025,Gestión de Pedidos/Entregas
-T2 44338_Chavez A_Victoria/07-01-2025,Facturación_Documentos
+T2 44338_Chavez A_Victoria/07-01-2025,Cotización/Presupuesto
 T2 44338_Chavez A_Victoria/07-02-2025,Confirmación_Estado
 T2 44338_Chavez A_Victoria/07-03-2026,Interacción/Relacional
 T2 44338_Chavez A_Victoria/08-12-2025,Facturación_Documentos
@@ -129,7 +129,7 @@ T2 44338_Chavez A_Victoria/19-06-2025,Confirmación_Estado
 T2 44338_Chavez A_Victoria/19-08-2025,Cotización/Presupuesto
 T2 44338_Chavez A_Victoria/19-11-2025,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/20-01-2026,Gestión de Pedidos/Entregas
-T2 44338_Chavez A_Victoria/20-03-2025,Confirmación_Estado
+T2 44338_Chavez A_Victoria/20-03-2025,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/20-06-2025,Facturación_Documentos
 T2 44338_Chavez A_Victoria/20-08-2025,Cotización/Presupuesto
 T2 44338_Chavez A_Victoria/20-10-2025,Confirmación_Estado
@@ -141,7 +141,7 @@ T2 44338_Chavez A_Victoria/22-04-2026,Confirmación_Estado
 T2 44338_Chavez A_Victoria/23-04-2026,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/25-04-2026,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/25-08-2025,Facturación_Documentos
-T2 44338_Chavez A_Victoria/26-08-2025,Confirmación_Estado
+T2 44338_Chavez A_Victoria/26-08-2025,Consulta de Precio
 T2 44338_Chavez A_Victoria/27-01-2025,Confirmación_Estado
 T2 44338_Chavez A_Victoria/27-02-2026,Confirmación_Estado
 T2 44338_Chavez A_Victoria/27-08-2025,Facturación_Documentos
@@ -152,7 +152,7 @@ T2 44338_Chavez A_Victoria/29-01-2026,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/29-08-2025,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/30-01-2026,Gestión de Pedidos/Entregas
 T2 44338_Chavez A_Victoria/30-08-2025,Confirmación_Estado
-T2 44338_Chavez A_Victoria/30-09-2025,Gestión de Pedidos/Entregas
+T2 44338_Chavez A_Victoria/30-09-2025,Facturación_Documentos
 T2 44338_Chavez A_Victoria/31-07-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/01-04-2026,Interacción/Relacional
 T2 45101 Vision C_ Cleam/01-07-2025,Facturación_Documentos
@@ -181,7 +181,7 @@ T2 45101 Vision C_ Cleam/05-11-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/05-12-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/06-01-2026,Interacción/Relacional
 T2 45101 Vision C_ Cleam/06-03-2026,Facturación_Documentos
-T2 45101 Vision C_ Cleam/06-04-2026,Confirmación_Estado
+T2 45101 Vision C_ Cleam/06-04-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/06-11-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/06-12-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/07-01-2026,Confirmación_Estado
@@ -190,7 +190,7 @@ T2 45101 Vision C_ Cleam/07-05-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/07-07-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/07-10-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/07-11-2025,Cotización/Presupuesto
-T2 45101 Vision C_ Cleam/08-01-2026,Facturación_Documentos
+T2 45101 Vision C_ Cleam/08-01-2026,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/08-04-2026,Interacción/Relacional
 T2 45101 Vision C_ Cleam/08-05-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/08-07-2025,Confirmación_Estado
@@ -199,17 +199,17 @@ T2 45101 Vision C_ Cleam/08-09-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/08-10-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/08-12-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/09-01-2026,Gestión de Pedidos/Entregas
-T2 45101 Vision C_ Cleam/09-03-2026,Interacción/Relacional
+T2 45101 Vision C_ Cleam/09-03-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/09-04-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/09-07-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/09-08-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/09-09-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/09-10-2025,Confirmación_Estado
+T2 45101 Vision C_ Cleam/09-10-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/09-12-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/10-03-2026,Facturación_Documentos
 T2 45101 Vision C_ Cleam/10-07-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/10-09-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/10-11-2025,Confirmación_Estado
+T2 45101 Vision C_ Cleam/10-09-2025,Consulta de Precio
+T2 45101 Vision C_ Cleam/10-11-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/10-12-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/11-02-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/11-03-2026,Facturación_Documentos
@@ -219,14 +219,14 @@ T2 45101 Vision C_ Cleam/11-08-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/11-09-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/11-11-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/11-12-2025,Cotización/Presupuesto
-T2 45101 Vision C_ Cleam/12-03-2026,Interacción/Relacional
+T2 45101 Vision C_ Cleam/12-03-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/12-06-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/12-09-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/13-02-2026,Facturación_Documentos
 T2 45101 Vision C_ Cleam/13-03-2026,Facturación_Documentos
 T2 45101 Vision C_ Cleam/13-06-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/13-08-2025,Interacción/Relacional
-T2 45101 Vision C_ Cleam/13-09-2025,Confirmación_Estado
+T2 45101 Vision C_ Cleam/13-08-2025,Consulta de Precio
+T2 45101 Vision C_ Cleam/13-09-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/14-01-2026,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/14-02-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/14-04-2026,Cotización/Presupuesto
@@ -236,7 +236,7 @@ T2 45101 Vision C_ Cleam/15-01-2026,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/15-04-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/15-07-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/15-08-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/15-10-2025,Facturación_Documentos
+T2 45101 Vision C_ Cleam/15-10-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/16-01-2026,Interacción/Relacional
 T2 45101 Vision C_ Cleam/16-02-2026,Facturación_Documentos
 T2 45101 Vision C_ Cleam/16-04-2026,Gestión de Pedidos/Entregas
@@ -253,7 +253,7 @@ T2 45101 Vision C_ Cleam/18-09-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/18-11-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/18-12-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/19-01-2026,Gestión de Pedidos/Entregas
-T2 45101 Vision C_ Cleam/19-02-2026,Facturación_Documentos
+T2 45101 Vision C_ Cleam/19-02-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/19-03-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/19-08-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/19-09-2025,Confirmación_Estado
@@ -270,7 +270,7 @@ T2 45101 Vision C_ Cleam/22-07-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/22-08-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/22-12-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/23-01-2026,Interacción/Relacional
-T2 45101 Vision C_ Cleam/23-06-2025,Facturación_Documentos
+T2 45101 Vision C_ Cleam/23-06-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/23-09-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/23-10-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/24-06-2025,Seguimiento de Ventas
@@ -280,25 +280,25 @@ T2 45101 Vision C_ Cleam/24-12-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/25-02-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/25-03-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/25-04-2025,Facturación_Documentos
-T2 45101 Vision C_ Cleam/25-07-2025,Facturación_Documentos
+T2 45101 Vision C_ Cleam/25-07-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/25-11-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/26-01-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/26-02-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/26-03-2026,Facturación_Documentos
 T2 45101 Vision C_ Cleam/26-06-2025,Gestión de Pedidos/Entregas
-T2 45101 Vision C_ Cleam/26-07-2025,Facturación_Documentos
+T2 45101 Vision C_ Cleam/26-07-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/26-08-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/26-09-2025,Facturación_Documentos
 T2 45101 Vision C_ Cleam/26-11-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/26-12-2025,Interacción/Relacional
-T2 45101 Vision C_ Cleam/27-03-2026,Facturación_Documentos
+T2 45101 Vision C_ Cleam/27-03-2026,Confirmación_Estado
 T2 45101 Vision C_ Cleam/27-08-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/27-11-2025,Interacción/Relacional
 T2 45101 Vision C_ Cleam/28-04-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/28-07-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/28-08-2025,Gestión de Pedidos/Entregas
+T2 45101 Vision C_ Cleam/28-07-2025,Gestión de Pedidos/Entregas
+T2 45101 Vision C_ Cleam/28-08-2025,Cotización/Presupuesto
 T2 45101 Vision C_ Cleam/28-11-2025,Confirmación_Estado
-T2 45101 Vision C_ Cleam/29-01-2026,Confirmación_Estado
+T2 45101 Vision C_ Cleam/29-01-2026,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/29-08-2025,Gestión de Pedidos/Entregas
 T2 45101 Vision C_ Cleam/29-09-2025,Confirmación_Estado
 T2 45101 Vision C_ Cleam/30-07-2025,Gestión de Pedidos/Entregas
@@ -336,7 +336,7 @@ T2 Daniela 46752/09-10-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/10-01-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/10-12-2024,Gestión de Pedidos/Entregas
 T2 Daniela 46752/11-11-2025,Gestión de Pedidos/Entregas
-T2 Daniela 46752/12-04-2025,Confirmación_Estado
+T2 Daniela 46752/12-04-2025,Interacción/Relacional
 T2 Daniela 46752/13-01-2026,Gestión de Pedidos/Entregas
 T2 Daniela 46752/13-02-2026,Confirmación_Estado
 T2 Daniela 46752/13-10-2025,Gestión de Pedidos/Entregas
@@ -351,13 +351,13 @@ T2 Daniela 46752/17-09-2025,Soporte
 T2 Daniela 46752/17-12-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/18-02-2025,Interacción/Relacional
 T2 Daniela 46752/19-06-2025,Interacción/Relacional
-T2 Daniela 46752/20-08-2024,Gestión de Pedidos/Entregas
+T2 Daniela 46752/20-08-2024,Facturación_Documentos
 T2 Daniela 46752/21-03-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/21-08-2024,Facturación_Documentos
 T2 Daniela 46752/21-10-2024,Confirmación_Estado
 T2 Daniela 46752/21-11-2024,Interacción/Relacional
 T2 Daniela 46752/22-10-2024,Cotización/Presupuesto
-T2 Daniela 46752/22-12-2025,Facturación_Documentos
+T2 Daniela 46752/22-12-2025,Confirmación_Estado
 T2 Daniela 46752/23-12-2024,Interacción/Relacional
 T2 Daniela 46752/24-04-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/25-04-2025,Facturación_Documentos
@@ -366,7 +366,7 @@ T2 Daniela 46752/26-11-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/27-01-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/27-03-2026,Gestión de Pedidos/Entregas
 T2 Daniela 46752/27-05-2025,Interacción/Relacional
-T2 Daniela 46752/27-09-2024,Interacción/Relacional
+T2 Daniela 46752/27-09-2024,Seguimiento de Ventas
 T2 Daniela 46752/27-11-2025,Interacción/Relacional
 T2 Daniela 46752/28-03-2025,Gestión de Pedidos/Entregas
 T2 Daniela 46752/28-07-2025,Interacción/Relacional
@@ -386,7 +386,7 @@ T2 Jaime 47559/05-12-2025,Facturación_Documentos
 T2 Jaime 47559/06-06-2025,Cotización/Presupuesto
 T2 Jaime 47559/07-01-2025,Facturación_Documentos
 T2 Jaime 47559/07-01-2026,Interacción/Relacional
-T2 Jaime 47559/07-06-2024,Facturación_Documentos
+T2 Jaime 47559/07-06-2024,Cotización/Presupuesto
 T2 Jaime 47559/08-04-2025,Interacción/Relacional
 T2 Jaime 47559/08-08-2024,Interacción/Relacional
 T2 Jaime 47559/08-08-2025,Confirmación_Estado
@@ -422,7 +422,7 @@ T2 Jaime 47559/16-10-2024,Facturación_Documentos
 T2 Jaime 47559/16-11-2023,Interacción/Relacional
 T2 Jaime 47559/16-12-2024,Cotización/Presupuesto
 T2 Jaime 47559/17-02-2025,Facturación_Documentos
-T2 Jaime 47559/17-06-2024,Confirmación_Estado
+T2 Jaime 47559/17-06-2024,Gestión de Pedidos/Entregas
 T2 Jaime 47559/17-06-2025,Facturación_Documentos
 T2 Jaime 47559/17-09-2024,Confirmación_Estado
 T2 Jaime 47559/17-09-2025,Facturación_Documentos
@@ -435,11 +435,11 @@ T2 Jaime 47559/18-08-2025,Confirmación_Estado
 T2 Jaime 47559/18-10-2024,Gestión de Pedidos/Entregas
 T2 Jaime 47559/19-03-2026,Gestión de Pedidos/Entregas
 T2 Jaime 47559/19-06-2024,Cotización/Presupuesto
-T2 Jaime 47559/19-11-2025,Gestión de Pedidos/Entregas
-T2 Jaime 47559/19-12-2024,Interacción/Relacional
+T2 Jaime 47559/19-11-2025,Cotización/Presupuesto
+T2 Jaime 47559/19-12-2024,Facturación_Documentos
 T2 Jaime 47559/20-02-2026,Gestión de Pedidos/Entregas
 T2 Jaime 47559/20-06-2024,Facturación_Documentos
-T2 Jaime 47559/20-12-2024,Interacción/Relacional
+T2 Jaime 47559/20-12-2024,No Clasificado
 T2 Jaime 47559/21-05-2025,Confirmación_Estado
 T2 Jaime 47559/21-10-2025,Confirmación_Estado
 T2 Jaime 47559/21-11-2023,Cotización/Presupuesto
@@ -461,7 +461,7 @@ T2 Jaime 47559/26-03-2025,Facturación_Documentos
 T2 Jaime 47559/26-03-2026,Confirmación_Estado
 T2 Jaime 47559/26-11-2025,Facturación_Documentos
 T2 Jaime 47559/26-12-2024,Confirmación_Estado
-T2 Jaime 47559/27-05-2025,Gestión de Pedidos/Entregas
+T2 Jaime 47559/27-05-2025,Facturación_Documentos
 T2 Jaime 47559/27-08-2024,Confirmación_Estado
 T2 Jaime 47559/27-12-2023,Confirmación_Estado
 T2 Jaime 47559/28-02-2024,Gestión de Pedidos/Entregas
@@ -472,7 +472,7 @@ T2 Jaime 47559/29-11-2023,Facturación_Documentos
 T2 Jaime 47559/31-05-2024,Confirmación_Estado
 T2 Lesli 47721/01-12-2025,Facturación_Documentos
 T2 Lesli 47721/10-04-2026,Interacción/Relacional
-T2 Lesli 47721/11-04-2026,Facturación_Documentos
+T2 Lesli 47721/11-04-2026,Cancelación
 T2 Lesli 47721/13-04-2026,Facturación_Documentos
 T2 Lesli 47721/14-04-2026,Facturación_Documentos
 T2 Lesli 47721/23-01-2025,Gestión de Pedidos/Entregas
@@ -496,7 +496,7 @@ T4  Carnes selec compras 19256 Sel/12-02-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/13-02-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/13-03-2026,Confirmación_Estado
 T4  Carnes selec compras 19256 Sel/14-02-2026,Cotización/Presupuesto
-T4  Carnes selec compras 19256 Sel/14-03-2026,Gestión de Pedidos/Entregas
+T4  Carnes selec compras 19256 Sel/14-03-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/15-04-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/16-02-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/16-04-2026,Cotización/Presupuesto
@@ -505,12 +505,12 @@ T4  Carnes selec compras 19256 Sel/17-04-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/18-04-2026,Gestión de Pedidos/Entregas
 T4  Carnes selec compras 19256 Sel/19-01-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/19-02-2026,Interacción/Relacional
-T4  Carnes selec compras 19256 Sel/19-03-2026,Cotización/Presupuesto
+T4  Carnes selec compras 19256 Sel/19-03-2026,Confirmación_Estado
 T4  Carnes selec compras 19256 Sel/20-03-2026,Interacción/Relacional
-T4  Carnes selec compras 19256 Sel/21-01-2026,Facturación_Documentos
+T4  Carnes selec compras 19256 Sel/21-01-2026,Gestión de Pedidos/Entregas
 T4  Carnes selec compras 19256 Sel/21-02-2026,Gestión de Pedidos/Entregas
-T4  Carnes selec compras 19256 Sel/22-01-2026,Cotización/Presupuesto
-T4  Carnes selec compras 19256 Sel/22-04-2026,Facturación_Documentos
+T4  Carnes selec compras 19256 Sel/22-01-2026,Gestión de Pedidos/Entregas
+T4  Carnes selec compras 19256 Sel/22-04-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/23-02-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/23-04-2026,Confirmación_Estado
 T4  Carnes selec compras 19256 Sel/24-01-2026,Cotización/Presupuesto
@@ -519,28 +519,28 @@ T4  Carnes selec compras 19256 Sel/24-04-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/25-02-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/25-03-2026,Gestión de Pedidos/Entregas
 T4  Carnes selec compras 19256 Sel/25-04-2026,Gestión de Pedidos/Entregas
-T4  Carnes selec compras 19256 Sel/27-01-2026,Interacción/Relacional
+T4  Carnes selec compras 19256 Sel/27-01-2026,Gestión de Pedidos/Entregas
 T4  Carnes selec compras 19256 Sel/28-01-2026,Gestión de Pedidos/Entregas
 T4  Carnes selec compras 19256 Sel/29-01-2026,Confirmación_Estado
 T4  Carnes selec compras 19256 Sel/30-01-2026,Cotización/Presupuesto
 T4  Carnes selec compras 19256 Sel/31-01-2026,Gestión de Pedidos/Entregas
 T4 Angelita Río Yaqui 44208/04-03-2026,Cotización/Presupuesto
 T4 Angelita Río Yaqui 44208/18-03-2026,Gestión de Pedidos/Entregas
-T4 Angelita Río Yaqui 44208/21-02-2026,Interacción/Relacional
+T4 Angelita Río Yaqui 44208/21-02-2026,Seguimiento de Ventas
 T4 Angelita Río Yaqui 44208/25-04-2026,Cotización/Presupuesto
 T4 Copycos 16807/02-03-2026,Cotización/Presupuesto
 T4 Copycos 16807/03-03-2026,Gestión de Pedidos/Entregas
 T4 Copycos 16807/07-04-2026,Gestión de Pedidos/Entregas
 T4 Copycos 16807/11-04-2026,Gestión de Pedidos/Entregas
-T4 Copycos 16807/13-02-2026,Confirmación_Estado
-T4 Copycos 16807/13-04-2026,Gestión de Pedidos/Entregas
+T4 Copycos 16807/13-02-2026,Gestión de Pedidos/Entregas
+T4 Copycos 16807/13-04-2026,Cotización/Presupuesto
 T4 Copycos 16807/14-04-2026,Cotización/Presupuesto
-T4 Copycos 16807/16-04-2026,Confirmación_Estado
+T4 Copycos 16807/16-04-2026,Interacción/Relacional
 T4 Copycos 16807/20-04-2026,Gestión de Pedidos/Entregas
 T4 Copycos 16807/21-04-2026,Cotización/Presupuesto
-T4 Copycos 16807/22-01-2026,Interacción/Relacional
+T4 Copycos 16807/22-01-2026,Cotización/Presupuesto
 T4 Copycos 16807/22-04-2026,Gestión de Pedidos/Entregas
-T4 Copycos 16807/23-04-2026,Confirmación_Estado
+T4 Copycos 16807/23-04-2026,No Clasificado
 T4 Copycos 16807/24-01-2026,Cotización/Presupuesto
 T4 Copycos 16807/24-02-2026,Gestión de Pedidos/Entregas
 T4 Copycos 16807/25-04-2026,Facturación_Documentos
@@ -555,7 +555,7 @@ T4 Cuprum Constitucion 44531/18-02-2026,Facturación_Documentos
 T4 Electrica Aselco 19649/03-02-2026,Interacción/Relacional
 T4 Electrica Aselco 19649/05-02-2026,Seguimiento de Ventas
 T4 Electrica Aselco 19649/06-02-2026,Gestión de Pedidos/Entregas
-T4 Electrica Aselco 19649/06-04-2026,Confirmación_Estado
+T4 Electrica Aselco 19649/06-04-2026,Gestión de Pedidos/Entregas
 T4 Electrica Aselco 19649/07-02-2026,Gestión de Pedidos/Entregas
 T4 Electrica Aselco 19649/07-04-2026,Gestión de Pedidos/Entregas
 T4 Electrica Aselco 19649/08-04-2026,Interacción/Relacional
@@ -572,10 +572,10 @@ T4 Electrica Aselco 19649/17-03-2026,Facturación_Documentos
 T4 Electrica Aselco 19649/19-01-2026,Interacción/Relacional
 T4 Electrica Aselco 19649/23-02-2026,Gestión de Pedidos/Entregas
 T4 Electrica Aselco 19649/23-04-2026,Gestión de Pedidos/Entregas
-T4 Electrica Aselco 19649/24-04-2026,Consulta de Precio
+T4 Electrica Aselco 19649/24-04-2026,Cotización/Presupuesto
 T4 Electrica Aselco 19649/25-04-2026,Cotización/Presupuesto
 T4 Electrica Aselco 19649/26-01-2026,Interacción/Relacional
-T4 Jesús Meléndez 31713/06-03-2026,Interacción/Relacional
+T4 Jesús Meléndez 31713/06-03-2026,Gestión de Pedidos/Entregas
 T4 Jesús Meléndez 31713/09-03-2026,Facturación_Documentos
 T4 Jesús Meléndez 31713/11-04-2026,Facturación_Documentos
 T4 Jesús Meléndez 31713/13-04-2026,Facturación_Documentos
@@ -600,20 +600,20 @@ T4 Mirna Jose A.Mora/12-03-2026,Gestión de Pedidos/Entregas
 T4 Mirna Jose A.Mora/15-04-2026,Gestión de Pedidos/Entregas
 T4 Mirna Jose A.Mora/16-04-2026,Cotización/Presupuesto
 T4 Mirna Jose A.Mora/21-03-2026,Confirmación_Estado
-T5 Alberto 31892 Inmobiliaria Caravi/09-02-2026,Interacción/Relacional
+T5 Alberto 31892 Inmobiliaria Caravi/09-02-2026,No Clasificado
 T5 Alberto 31892 Inmobiliaria Caravi/09-03-2026,Gestión de Pedidos/Entregas
 T5 Alberto 31892 Inmobiliaria Caravi/10-04-2026,Cotización/Presupuesto
 T5 Alberto 31892 Inmobiliaria Caravi/19-02-2026,Cotización/Presupuesto
 T5 Alberto 31892 Inmobiliaria Caravi/22-01-2026,Interacción/Relacional
 T5 Alberto 31892 Inmobiliaria Caravi/23-02-2026,Interacción/Relacional
-T5 Alberto 31892 Inmobiliaria Caravi/26-03-2026,Interacción/Relacional
+T5 Alberto 31892 Inmobiliaria Caravi/26-03-2026,Seguimiento de Ventas
 T5 Castilla Shaula/04-02-2026,Confirmación_Estado
 T5 Castilla Shaula/05-03-2026,Cotización/Presupuesto
 T5 Castilla Shaula/06-03-2026,Cotización/Presupuesto
 T5 Castilla Shaula/07-04-2026,Confirmación_Estado
 T5 Castilla Shaula/10-03-2026,Facturación_Documentos
 T5 Castilla Shaula/11-03-2026,Cotización/Presupuesto
-T5 Castilla Shaula/12-03-2026,Facturación_Documentos
+T5 Castilla Shaula/12-03-2026,Cotización/Presupuesto
 T5 Castilla Shaula/13-03-2026,Gestión de Pedidos/Entregas
 T5 Castilla Shaula/14-04-2026,Confirmación_Estado
 T5 Castilla Shaula/15-04-2026,Confirmación_Estado
@@ -630,7 +630,7 @@ T5 Castilla Shaula/23-04-2026,Facturación_Documentos
 T5 Castilla Shaula/24-02-2026,Facturación_Documentos
 T5 Castilla Shaula/24-03-2026,Facturación_Documentos
 T5 Castilla Shaula/24-04-2026,Facturación_Documentos
-T5 Castilla Shaula/27-01-2026,Confirmación_Estado
+T5 Castilla Shaula/27-01-2026,Facturación_Documentos
 T5 Castilla Shaula/27-02-2026,Facturación_Documentos
 T5 Castilla Shaula/28-01-2026,Consulta de Precio
 T5 Elizabeth Productora De Alimentos/04-02-2026,Facturación_Documentos
@@ -643,12 +643,12 @@ T5 Elizabeth Productora De Alimentos/12-02-2026,Gestión de Pedidos/Entregas
 T5 Elizabeth Productora De Alimentos/12-03-2026,Gestión de Pedidos/Entregas
 T5 Elizabeth Productora De Alimentos/17-02-2026,Cotización/Presupuesto
 T5 Elizabeth Productora De Alimentos/18-03-2026,Cotización/Presupuesto
-T5 Elizabeth Productora De Alimentos/19-02-2026,Confirmación_Estado
-T5 Elizabeth Productora De Alimentos/19-03-2026,Interacción/Relacional
+T5 Elizabeth Productora De Alimentos/19-02-2026,Facturación_Documentos
+T5 Elizabeth Productora De Alimentos/19-03-2026,No Clasificado
 T5 Elizabeth Productora De Alimentos/20-01-2026,Gestión de Pedidos/Entregas
 T5 Elizabeth Productora De Alimentos/21-04-2026,Confirmación_Estado
 T5 Elizabeth Productora De Alimentos/23-01-2026,Gestión de Pedidos/Entregas
-T5 Elizabeth Productora De Alimentos/23-04-2026,Interacción/Relacional
+T5 Elizabeth Productora De Alimentos/23-04-2026,No Clasificado
 T5 Elizabeth Productora De Alimentos/24-02-2026,Interacción/Relacional
 T5 Elizabeth Productora De Alimentos/25-02-2026,Facturación_Documentos
 T5 Elizabeth Productora De Alimentos/25-03-2026,Gestión de Pedidos/Entregas
@@ -658,7 +658,7 @@ T5 Elizabeth Productora De Alimentos/27-02-2026,Gestión de Pedidos/Entregas
 T5 Mirna 10149/09-02-2026,Facturación_Documentos
 T5 Mirna 10149/09-03-2026,Gestión de Pedidos/Entregas
 T5 Mirna 10149/25-04-2026,Facturación_Documentos
-T5 Oriana Tribunal Agrario/05-02-2026,Interacción/Relacional
+T5 Oriana Tribunal Agrario/05-02-2026,No Clasificado
 T5 Oriana Tribunal Agrario/16-04-2026,Cotización/Presupuesto
 T5 Oriana Tribunal Agrario/18-03-2026,Facturación_Documentos
 T5 Oriana Tribunal Agrario/20-01-2026,Confirmación_Estado
@@ -672,19 +672,19 @@ T5 Raul Vama/06-04-2026,Cotización/Presupuesto
 T5 Raul Vama/07-02-2026,Facturación_Documentos
 T5 Raul Vama/07-04-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/08-04-2026,Gestión de Pedidos/Entregas
-T5 Raul Vama/09-03-2026,Confirmación_Estado
+T5 Raul Vama/09-03-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/10-02-2026,Gestión de Pedidos/Entregas
-T5 Raul Vama/10-03-2026,Confirmación_Estado
+T5 Raul Vama/10-03-2026,No Clasificado
 T5 Raul Vama/10-04-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/11-02-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/11-03-2026,Cancelación
-T5 Raul Vama/11-04-2026,Confirmación_Estado
+T5 Raul Vama/11-04-2026,Consulta de Precio
 T5 Raul Vama/12-02-2026,Confirmación_Estado
 T5 Raul Vama/13-02-2026,Confirmación_Estado
 T5 Raul Vama/13-04-2026,Confirmación_Estado
 T5 Raul Vama/16-04-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/17-02-2026,Gestión de Pedidos/Entregas
-T5 Raul Vama/17-03-2026,Confirmación_Estado
+T5 Raul Vama/17-03-2026,No Clasificado
 T5 Raul Vama/18-02-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/18-03-2026,Gestión de Pedidos/Entregas
 T5 Raul Vama/18-04-2026,Gestión de Pedidos/Entregas
@@ -703,9 +703,9 @@ T5 Raul Vama/28-02-2026,Facturación_Documentos
 T5 Raul Vama/31-01-2026,Gestión de Pedidos/Entregas
 t6 CASSANDRA ADMINISTRACION CHINIZA/07-03-2026,Gestión de Pedidos/Entregas
 t6 CASSANDRA ADMINISTRACION CHINIZA/09-02-2026,Facturación_Documentos
-t6 CASSANDRA ADMINISTRACION CHINIZA/11-02-2026,Confirmación_Estado
+t6 CASSANDRA ADMINISTRACION CHINIZA/11-02-2026,Consulta de Precio
 t6 CASSANDRA ADMINISTRACION CHINIZA/14-04-2026,Confirmación_Estado
-t6 CASSANDRA ADMINISTRACION CHINIZA/16-04-2026,Confirmación_Estado
+t6 CASSANDRA ADMINISTRACION CHINIZA/16-04-2026,Seguimiento de Ventas
 t6 CASSANDRA ADMINISTRACION CHINIZA/23-03-2026,Confirmación_Estado
 t6 CASSANDRA ADMINISTRACION CHINIZA/27-02-2026,Interacción/Relacional
 t6 CASSANDRA ADMINISTRACION CHINIZA/28-03-2026,Interacción/Relacional
@@ -726,14 +726,14 @@ T6 Michelle GPS (45574)/21-04-2026,Cotización/Presupuesto
 T6 Michelle GPS (45574)/22-04-2026,Cotización/Presupuesto
 T6 Michelle GPS (45574)/23-04-2026,Consulta de Precio
 T6 Michelle GPS (45574)/24-04-2026,Confirmación_Estado
-T6 Michelle GPS (45574)/25-04-2026,Gestión de Pedidos/Entregas
-T6 Michelle GPS (45574)/27-03-2026,Facturación_Documentos
+T6 Michelle GPS (45574)/25-04-2026,Cotización/Presupuesto
+T6 Michelle GPS (45574)/27-03-2026,Gestión de Pedidos/Entregas
 T6 Michelle GPS (45574)/30-03-2026,Gestión de Pedidos/Entregas
 t6 Patty (40056) 777 MSI DIAMANTE 2/02-03-2026,Gestión de Pedidos/Entregas
 t6 Patty (40056) 777 MSI DIAMANTE 2/03-03-2026,Facturación_Documentos
 t6 Patty (40056) 777 MSI DIAMANTE 2/04-02-2026,Facturación_Documentos
 t6 Patty (40056) 777 MSI DIAMANTE 2/04-03-2026,Confirmación_Estado
-t6 Patty (40056) 777 MSI DIAMANTE 2/06-02-2026,Interacción/Relacional
+t6 Patty (40056) 777 MSI DIAMANTE 2/06-02-2026,No Clasificado
 t6 Patty (40056) 777 MSI DIAMANTE 2/06-03-2026,Facturación_Documentos
 t6 Patty (40056) 777 MSI DIAMANTE 2/07-03-2026,Confirmación_Estado
 t6 Patty (40056) 777 MSI DIAMANTE 2/09-03-2026,Cotización/Presupuesto
@@ -745,8 +745,8 @@ t6 Patty (40056) 777 MSI DIAMANTE 2/15-04-2026,Confirmación_Estado
 t6 Patty (40056) 777 MSI DIAMANTE 2/16-04-2026,Gestión de Pedidos/Entregas
 t6 Patty (40056) 777 MSI DIAMANTE 2/18-03-2026,Confirmación_Estado
 t6 Patty (40056) 777 MSI DIAMANTE 2/20-04-2026,Facturación_Documentos
-t6 Patty (40056) 777 MSI DIAMANTE 2/21-04-2026,Interacción/Relacional
-t6 Patty (40056) 777 MSI DIAMANTE 2/23-04-2026,Confirmación_Estado
+t6 Patty (40056) 777 MSI DIAMANTE 2/21-04-2026,No Clasificado
+t6 Patty (40056) 777 MSI DIAMANTE 2/23-04-2026,Facturación_Documentos
 t6 Patty (40056) 777 MSI DIAMANTE 2/24-04-2026,Facturación_Documentos
 t6 Patty (40056) 777 MSI DIAMANTE 2/25-04-2026,Confirmación_Estado
 t6 Patty (40056) 777 MSI DIAMANTE 2/28-03-2026,Facturación_Documentos
@@ -778,11 +778,11 @@ T6 Sistemas de Impresion Elect. Compras/17-03-2026,Gestión de Pedidos/Entregas
 T6 Sistemas de Impresion Elect. Compras/17-04-2026,Cotización/Presupuesto
 T6 Sistemas de Impresion Elect. Compras/18-02-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/19-01-2026,Facturación_Documentos
-T6 Sistemas de Impresion Elect. Compras/19-02-2026,Interacción/Relacional
+T6 Sistemas de Impresion Elect. Compras/19-02-2026,No Clasificado
 T6 Sistemas de Impresion Elect. Compras/19-03-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/20-01-2026,Cotización/Presupuesto
-T6 Sistemas de Impresion Elect. Compras/20-02-2026,Interacción/Relacional
-T6 Sistemas de Impresion Elect. Compras/20-03-2026,Interacción/Relacional
+T6 Sistemas de Impresion Elect. Compras/20-02-2026,No Clasificado
+T6 Sistemas de Impresion Elect. Compras/20-03-2026,No Clasificado
 T6 Sistemas de Impresion Elect. Compras/20-04-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/21-04-2026,Cotización/Presupuesto
 T6 Sistemas de Impresion Elect. Compras/22-01-2026,Facturación_Documentos
@@ -790,7 +790,7 @@ T6 Sistemas de Impresion Elect. Compras/22-04-2026,Confirmación_Estado
 T6 Sistemas de Impresion Elect. Compras/23-01-2026,Facturación_Documentos
 T6 Sistemas de Impresion Elect. Compras/23-02-2026,Confirmación_Estado
 T6 Sistemas de Impresion Elect. Compras/23-03-2026,Confirmación_Estado
-T6 Sistemas de Impresion Elect. Compras/23-04-2026,Facturación_Documentos
+T6 Sistemas de Impresion Elect. Compras/23-04-2026,Gestión de Pedidos/Entregas
 T6 Sistemas de Impresion Elect. Compras/24-02-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/24-03-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/24-04-2026,Facturación_Documentos
@@ -800,7 +800,7 @@ T6 Sistemas de Impresion Elect. Compras/25-04-2026,Gestión de Pedidos/Entregas
 T6 Sistemas de Impresion Elect. Compras/26-02-2026,Facturación_Documentos
 T6 Sistemas de Impresion Elect. Compras/27-01-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/27-03-2026,Interacción/Relacional
-T6 Sistemas de Impresion Elect. Compras/28-01-2026,Confirmación_Estado
+T6 Sistemas de Impresion Elect. Compras/28-01-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/29-01-2026,Gestión de Pedidos/Entregas
 T6 Sistemas de Impresion Elect. Compras/30-01-2026,Interacción/Relacional
 T6 Sistemas de Impresion Elect. Compras/31-01-2026,Facturación_Documentos
@@ -811,7 +811,7 @@ T9 Anahí Ingresos Maco/25-04-2026,Seguimiento de Ventas
 T9 Drenax 42513/06-03-2026,Gestión de Pedidos/Entregas
 T9 Drenax 42513/09-03-2026,Seguimiento de Ventas
 T9 Drenax 42513/10-04-2026,Gestión de Pedidos/Entregas
-T9 Drenax 42513/11-02-2026,Confirmación_Estado
+T9 Drenax 42513/11-02-2026,Gestión de Pedidos/Entregas
 T9 Drenax 42513/13-04-2026,Seguimiento de Ventas
 T9 Drenax 42513/14-04-2026,Seguimiento de Ventas
 T9 Drenax 42513/18-03-2026,Interacción/Relacional
@@ -821,13 +821,13 @@ T9 Drenax 42513/22-04-2026,Confirmación_Estado
 T9 Drenax 42513/23-04-2026,Gestión de Pedidos/Entregas
 T9 Drenax 42513/24-04-2026,Seguimiento de Ventas
 T9 Drenax 42513/25-04-2026,Seguimiento de Ventas
-T9 Drenax 42513/26-02-2026,Consulta de Precio
-T9 Ferre laminas 46266/06-03-2026,Gestión de Pedidos/Entregas
+T9 Drenax 42513/26-02-2026,Gestión de Pedidos/Entregas
+T9 Ferre laminas 46266/06-03-2026,Cotización/Presupuesto
 T9 Ferre laminas 46266/08-04-2026,Cotización/Presupuesto
 T9 Ferre laminas 46266/11-04-2026,Cotización/Presupuesto
-T9 Ferre laminas 46266/16-02-2026,Facturación_Documentos
+T9 Ferre laminas 46266/16-02-2026,Gestión de Pedidos/Entregas
 T9 Ferre laminas 46266/22-04-2026,Seguimiento de Ventas
-T9 Ferre laminas 46266/23-03-2026,Facturación_Documentos
+T9 Ferre laminas 46266/23-03-2026,Gestión de Pedidos/Entregas
 T9 Ferre laminas 46266/24-03-2026,Gestión de Pedidos/Entregas
 T9 Ferre laminas 46266/25-03-2026,Confirmación_Estado
 T9 Huma Uniformes Y Bordados 41403/01-04-2026,Facturación_Documentos
@@ -837,7 +837,7 @@ T9 Huma Uniformes Y Bordados 41403/06-02-2026,Facturación_Documentos
 T9 Huma Uniformes Y Bordados 41403/06-03-2026,Gestión de Pedidos/Entregas
 T9 Huma Uniformes Y Bordados 41403/07-04-2026,Gestión de Pedidos/Entregas
 T9 Huma Uniformes Y Bordados 41403/08-04-2026,Facturación_Documentos
-T9 Huma Uniformes Y Bordados 41403/09-02-2026,Interacción/Relacional
+T9 Huma Uniformes Y Bordados 41403/09-02-2026,Cotización/Presupuesto
 T9 Huma Uniformes Y Bordados 41403/12-03-2026,Confirmación_Estado
 T9 Huma Uniformes Y Bordados 41403/13-03-2026,Cotización/Presupuesto
 T9 Huma Uniformes Y Bordados 41403/13-04-2026,Confirmación_Estado
@@ -846,36 +846,36 @@ T9 Huma Uniformes Y Bordados 41403/17-03-2026,Confirmación_Estado
 T9 Huma Uniformes Y Bordados 41403/19-01-2026,Gestión de Pedidos/Entregas
 T9 Huma Uniformes Y Bordados 41403/21-02-2026,Facturación_Documentos
 T9 Huma Uniformes Y Bordados 41403/21-04-2026,Interacción/Relacional
-T9 Huma Uniformes Y Bordados 41403/25-03-2026,Facturación_Documentos
+T9 Huma Uniformes Y Bordados 41403/25-03-2026,Cotización/Presupuesto
 T9 Huma Uniformes Y Bordados 41403/28-01-2026,Facturación_Documentos
 T9 Huma Uniformes Y Bordados 41403/29-01-2026,Facturación_Documentos
 T9 Miriam Fienmont 45737 Miriam/06-04-2026,Facturación_Documentos
 T9 Miriam Fienmont 45737 Miriam/10-04-2026,Facturación_Documentos
 T9 Miriam Fienmont 45737 Miriam/11-04-2026,Confirmación_Estado
 T9 Miriam Fienmont 45737 Miriam/14-04-2026,Interacción/Relacional
-T9 Miriam Fienmont 45737 Miriam/16-02-2026,Gestión de Pedidos/Entregas
+T9 Miriam Fienmont 45737 Miriam/16-02-2026,Cotización/Presupuesto
 T9 Miriam Fienmont 45737 Miriam/18-02-2026,Gestión de Pedidos/Entregas
 T9 Miriam Fienmont 45737 Miriam/18-03-2026,Facturación_Documentos
-T9 Miriam Fienmont 45737 Miriam/18-04-2026,Interacción/Relacional
-T9 Miriam Fienmont 45737 Miriam/19-01-2026,Gestión de Pedidos/Entregas
+T9 Miriam Fienmont 45737 Miriam/18-04-2026,No Clasificado
+T9 Miriam Fienmont 45737 Miriam/19-01-2026,Cotización/Presupuesto
 T9 Miriam Fienmont 45737 Miriam/20-04-2026,Facturación_Documentos
 T9 Miriam Fienmont 45737 Miriam/24-01-2026,Gestión de Pedidos/Entregas
 T9 Miriam Fienmont 45737 Miriam/25-04-2026,Facturación_Documentos
 T9 Miriam Fienmont 45737 Miriam/27-03-2026,Interacción/Relacional
 T9 Miriam Fienmont 45737 Miriam/30-03-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/03-03-2026,Cotización/Presupuesto
-T9 Sergio M paper plus 10592/04-03-2026,Cotización/Presupuesto
+T9 Sergio M paper plus 10592/04-03-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/05-02-2026,Cotización/Presupuesto
-T9 Sergio M paper plus 10592/05-03-2026,Facturación_Documentos
+T9 Sergio M paper plus 10592/05-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/06-02-2026,Confirmación_Estado
 T9 Sergio M paper plus 10592/07-04-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/09-02-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/09-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/10-02-2026,Confirmación_Estado
-T9 Sergio M paper plus 10592/10-03-2026,Cotización/Presupuesto
+T9 Sergio M paper plus 10592/10-03-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/11-02-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/11-03-2026,Cotización/Presupuesto
-T9 Sergio M paper plus 10592/12-03-2026,Gestión de Pedidos/Entregas
+T9 Sergio M paper plus 10592/12-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/13-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/13-04-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/14-02-2026,Facturación_Documentos
@@ -884,20 +884,20 @@ T9 Sergio M paper plus 10592/14-04-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/15-04-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/16-02-2026,Consulta de Precio
 T9 Sergio M paper plus 10592/16-04-2026,Confirmación_Estado
-T9 Sergio M paper plus 10592/17-03-2026,Interacción/Relacional
+T9 Sergio M paper plus 10592/17-03-2026,No Clasificado
 T9 Sergio M paper plus 10592/18-02-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/18-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/19-01-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/19-02-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/19-03-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/20-01-2026,Interacción/Relacional
-T9 Sergio M paper plus 10592/20-02-2026,Gestión de Pedidos/Entregas
+T9 Sergio M paper plus 10592/20-02-2026,Confirmación_Estado
 T9 Sergio M paper plus 10592/20-03-2026,Cotización/Presupuesto
-T9 Sergio M paper plus 10592/20-04-2026,Gestión de Pedidos/Entregas
+T9 Sergio M paper plus 10592/20-04-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/21-03-2026,Gestión de Pedidos/Entregas
 T9 Sergio M paper plus 10592/21-04-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/22-01-2026,Interacción/Relacional
-T9 Sergio M paper plus 10592/22-04-2026,Facturación_Documentos
+T9 Sergio M paper plus 10592/22-04-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/23-01-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/23-03-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/23-04-2026,Gestión de Pedidos/Entregas
@@ -905,7 +905,7 @@ T9 Sergio M paper plus 10592/24-01-2026,Interacción/Relacional
 T9 Sergio M paper plus 10592/24-02-2026,Confirmación_Estado
 T9 Sergio M paper plus 10592/24-03-2026,Confirmación_Estado
 T9 Sergio M paper plus 10592/24-04-2026,Cotización/Presupuesto
-T9 Sergio M paper plus 10592/25-02-2026,Gestión de Pedidos/Entregas
+T9 Sergio M paper plus 10592/25-02-2026,Cotización/Presupuesto
 T9 Sergio M paper plus 10592/26-01-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/26-03-2026,Facturación_Documentos
 T9 Sergio M paper plus 10592/27-03-2026,Gestión de Pedidos/Entregas

@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import unicodedata
 import pandas
@@ -126,6 +127,28 @@ RULES = [
     ]),
 ]
 
+SIN_CLASE = "No Clasificado"
+
+def normalize(text):
+    # minusculas, sin acentos y sin puntuacion para comparar texto y keywords igual
+    text = unicodedata.normalize("NFKD", text.lower())
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = re.sub(r"[^a-z0-9ñ\s]", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+def compile_keyword(kw):
+    kw = normalize(kw)
+    # una palabra: coincide al inicio de palabra (permite prefijos como "entreg")
+    # varias palabras: coincidencia exacta de la frase
+    if " " in kw:
+        return re.compile(rf"\b{re.escape(kw)}\b")
+    return re.compile(rf"\b{re.escape(kw)}\w*")
+
+COMPILED_RULES = [
+    (clase, peso, [compile_keyword(kw) for kw in keywords])
+    for clase, peso, keywords in RULES
+]
+
 def read_processed_chat(client, session):
     path = os.path.join(workspace.get_corpus_path(), client, session, "mensajes_processed.txt")
     if not os.path.exists(path):
@@ -145,12 +168,13 @@ def read_processed_chat(client, session):
 
 def score_text(text):
     scores = {}
-    
+    text = normalize(text)
+
     # iteramos en todas las clases y calculamos un score
-    for clase, peso, keywords in RULES:
+    for clase, peso, patterns in COMPILED_RULES:
         hits = 0
-        for kw in keywords:
-            if kw in text:
+        for pattern in patterns:
+            if pattern.search(text):
                 hits += 1
                 
         if hits:
@@ -163,11 +187,9 @@ def clasify_text(text, msg_count):
     # obtenemos el score del texto en particular
     scores = score_text(text)
 
-    # si el texto no tuvo matches con las palabras encontradas
+    # si el texto no tuvo matches con las palabras encontradas no adivinamos la clase
     if not scores:
-        if(msg_count <= 3):
-            return "Interacción/Relacional", "sin_señales_corta"
-        return "Confirmación_Estado", "sin_señales"
+        return SIN_CLASE, "sin_señales"
 
     # ordenamos nuestros resultados de forma descendente
     top = sorted(scores.items(), key=lambda x: -x[1])
